@@ -1,0 +1,237 @@
+﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <Presentation>
+    <Forms>
+      <Form ID="CustomAAActivityForm" Accessibility="Public" Target="System.WorkItem.Activity.AARunbookActivityFullProjection" Assembly="SCSM.AzureAutomation.WPF" TypeName="SCSM.AzureAutomation.WPF.ConfigItem.AzureAutomationActivityForm">
+        <Category>Form</Category>
+        <FormStrings>
+          <FormString ID="tabGeneral">$MPElement[Name="SCSM.AzureAutomation.tabGeneral"]$</FormString>
+          <FormString ID="tabGeneral">$MPElement[Name="SCSM.AzureAutomation.tabGeneral"]$</FormString>
+          <FormString ID="tabRunbook">$MPElement[Name="SCSM.AzureAutomation.tabRunbook"]$</FormString>
+          <FormString ID="tabConfigItems">$MPElement[Name="SCSM.AzureAutomation.tabConfigItems"]$</FormString>
+          <FormString ID="tabScheduling">$MPElement[Name="SCSM.AzureAutomation.tabScheduling"]$</FormString>
+          <FormString ID="tabRelatedItems">$MPElement[Name="SCSM.AzureAutomation.tabRelatedItems"]$</FormString>
+          <FormString ID="tabHistory">$MPElement[Name="SCSM.AzureAutomation.tabHistory"]$</FormString>
+          <FormString ID="labelTitle">$MPElement[Name="SCSM.AzureAutomation.labelTitle"]$</FormString>
+          <FormString ID="labelDescription">$MPElement[Name="SCSM.AzureAutomation.labelDescription"]$</FormString>
+          <FormString ID="labelArea">$MPElement[Name="SCSM.AzureAutomation.labelArea"]$</FormString>
+          <FormString ID="labelStage">$MPElement[Name="SCSM.AzureAutomation.labelStage"]$</FormString>
+          <FormString ID="labelOutput">$MPElement[Name="SCSM.AzureAutomation.labelOutput"]$</FormString>
+          <FormString ID="labelGeneralTitle">$MPElement[Name="SCSM.AzureAutomation.labelGeneralTitle"]$</FormString>
+          <FormString ID="labelAssignedTo">$MPElement[Name="SCSM.AzureAutomation.labelAssignedTo"]$</FormString>
+          <FormString ID="labelRunbookTitle">$MPElement[Name="SCSM.AzureAutomation.labelRunbookTitle"]$</FormString>
+          
+          <FormString ID="labelAARunbook">$MPElement[Name="SCSM.AzureAutomation.labelAARunbook"]$</FormString>
+          <FormString ID="labeDocumentation">$MPElement[Name="SCSM.AzureAutomation.labeDocumentation"]$</FormString>
+          <FormString ID="headerName">$MPElement[Name="SCSM.AzureAutomation.headerName"]$</FormString>
+          <FormString ID="headerMapping">$MPElement[Name="SCSM.AzureAutomation.headerMapping"]$</FormString>
+          <FormString ID="headerValue">$MPElement[Name="SCSM.AzureAutomation.headerValue"]$</FormString>
+          <FormString ID="labelParameterMapping">$MPElement[Name="SCSM.AzureAutomation.labelParameterMapping"]$</FormString>
+          <FormString ID="Label_SchedulingHeader">$MPElement[Name="SCSM.AzureAutomation.Label_SchedulingHeader"]$</FormString>
+          <FormString ID="Label_ScheduledDeploymentHeader">$MPElement[Name="SCSM.AzureAutomation.Label_ScheduledDeploymentHeader"]$</FormString>
+          <FormString ID="Label_ScheduledDeploymentStartTime">$MPElement[Name="SCSM.AzureAutomation.Label_ScheduledDeploymentStartTime"]$</FormString>
+          <FormString ID="Label_ScheduledDeploymentEndTime">$MPElement[Name="SCSM.AzureAutomation.Label_ScheduledDeploymentEndTime"]$</FormString>
+          <FormString ID="Label_ScheduledDeploymentDuration">$MPElement[Name="SCSM.AzureAutomation.Label_ScheduledDeploymentDuration"]$</FormString>
+          <FormString ID="Label_ActualDeploymentHeader">$MPElement[Name="SCSM.AzureAutomation.Label_ActualDeploymentHeader"]$</FormString>
+          <FormString ID="Label_ActualDeploymentStartTime">$MPElement[Name="SCSM.AzureAutomation.Label_ActualDeploymentStartTime"]$</FormString>
+          <FormString ID="Label_ActualDeploymentEndTime">$MPElement[Name="SCSM.AzureAutomation.Label_ActualDeploymentEndTime"]$</FormString>
+          <FormString ID="Label_ActualDeploymentDuration">$MPElement[Name="SCSM.AzureAutomation.Label_ActualDeploymentDuration"]$</FormString>
+          <FormString ID="Label_ScheduledDowntimeHeader">$MPElement[Name="SCSM.AzureAutomation.Label_ScheduledDowntimeHeader"]$</FormString>
+          <FormString ID="Label_ScheduledDowntimeStartTime">$MPElement[Name="SCSM.AzureAutomation.Label_ScheduledDowntimeStartTime"]$</FormString>
+          <FormString ID="Label_ScheduledDowntimeEndTime">$MPElement[Name="SCSM.AzureAutomation.Label_ScheduledDowntimeEndTime"]$</FormString>
+          <FormString ID="Label_ScheduledDowntimeDuration">$MPElement[Name="SCSM.AzureAutomation.Label_ScheduledDowntimeDuration"]$</FormString>
+          <FormString ID="Label_ActualDowntimeHeader">$MPElement[Name="SCSM.AzureAutomation.Label_ActualDowntimeHeader"]$</FormString>
+          <FormString ID="Label_ActualDowntimeStartTime">$MPElement[Name="SCSM.AzureAutomation.Label_ActualDowntimeStartTime"]$</FormString>
+          <FormString ID="Label_ActualDowntimeEndTime">$MPElement[Name="SCSM.AzureAutomation.Label_ActualDowntimeEndTime"]$</FormString>
+          <FormString ID="Label_ActualDowntimeDuration">$MPElement[Name="SCSM.AzureAutomation.Label_ActualDowntimeDuration"]$</FormString>
+          <FormString ID="Checkbox_CausesDowntime">$MPElement[Name="SCSM.AzureAutomation.Checkbox_CausesDowntime"]$</FormString>
+          <FormString ID="Label_ParentWorkItem">$MPElement[Name="SCSM.AzureAutomation.Label_ParentWorkItem"]$</FormString>
+          <FormString ID="Label_CreatedOn">$MPElement[Name="SCSM.AzureAutomation.Label_CreatedOn"]$</FormString>
+          <FormString ID="Label_CreatedBy">$MPElement[Name="SCSM.AzureAutomation.Label_CreatedBy"]$</FormString>
+          <FormString ID="Label_Status">$MPElement[Name="SCSM.AzureAutomation.Label_Status"]$</FormString>
+          <FormString ID="stringRefreshParameters">$MPElement[Name="SCSM.AzureAutomation.stringRefreshParameters"]$</FormString>
+        </FormStrings>
+      </Form>
+    </Forms>
+    <StringResources>
+      <StringResource ID="SCSM.AzureAutomation.tabGeneral"/>
+      <StringResource ID="SCSM.AzureAutomation.tabRunbook"/>
+      <StringResource ID="SCSM.AzureAutomation.tabConfigItems"/>
+      <StringResource ID="SCSM.AzureAutomation.tabScheduling"/>
+      <StringResource ID="SCSM.AzureAutomation.tabRelatedItems"/>
+      <StringResource ID="SCSM.AzureAutomation.tabHistory"/>
+      <StringResource ID="SCSM.AzureAutomation.labelTitle"/>
+      <StringResource ID="SCSM.AzureAutomation.labelDescription"/>
+      <StringResource ID="SCSM.AzureAutomation.labelArea"/>
+      <StringResource ID="SCSM.AzureAutomation.labelStage"/>
+      <StringResource ID="SCSM.AzureAutomation.labelOutput"/>
+      <StringResource ID="SCSM.AzureAutomation.labelGeneralTitle"/>
+      <StringResource ID="SCSM.AzureAutomation.labelAssignedTo"/>
+      <StringResource ID="SCSM.AzureAutomation.labelRunbookTitle"/>
+      <StringResource ID="SCSM.AzureAutomation.labelAARunbook"/>
+      <StringResource ID="SCSM.AzureAutomation.labelDocumentation"/>
+      <StringResource ID="SCSM.AzureAutomation.headerName"/>
+      <StringResource ID="SCSM.AzureAutomation.headerMapping"/>
+      <StringResource ID="SCSM.AzureAutomation.headerValue"/>
+      <StringResource ID="SCSM.AzureAutomation.labelParameterMapping"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_SchedulingHeader"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ScheduledDeploymentHeader"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ScheduledDeploymentStartTime"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ScheduledDeploymentEndTime"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ScheduledDeploymentDuration"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ActualDeploymentHeader"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ActualDeploymentStartTime"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ActualDeploymentEndTime"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ActualDeploymentDuration"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ScheduledDowntimeHeader"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ScheduledDowntimeStartTime"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ScheduledDowntimeEndTime"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ScheduledDowntimeDuration"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ActualDowntimeHeader"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ActualDowntimeStartTime"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ActualDowntimeEndTime"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ActualDowntimeDuration"/>
+      <StringResource ID="SCSM.AzureAutomation.Checkbox_CausesDowntime"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_ParentWorkItem"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_CreatedOn"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_CreatedBy"/>
+      <StringResource ID="SCSM.AzureAutomation.Label_Status"/>
+      <StringResource ID="SCSM.AzureAutomation.stringRefreshParameters"/>
+    </StringResources>
+  </Presentation>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="CustomAAActivityForm">
+          <Name>Azure Automation Activity Form</Name>
+          <Description>Azure Automation Activity Form</Description>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.tabGeneral">
+          <Name>General</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.tabRunbook">
+          <Name>Runbook</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.tabConfigItems">
+          <Name>Configuration Items</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.tabScheduling">
+          <Name>Scheduling</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.tabRelatedItems">
+          <Name>Related Items</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.tabHistory">
+          <Name>History</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelTitle">
+          <Name>Title:</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelDescription">
+          <Name>Description:</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelArea">
+          <Name>Classification</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelStage">
+          <Name>Stage</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelOutput">
+          <Name>Output</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelGeneralTitle">
+          <Name>Azure Automation Activity</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelAssignedTo">
+          <Name>Assigned To:</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelRunbookTitle">
+          <Name>Runbook</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelAARunbook">
+          <Name>Azure Automation Runbook</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelDocumentation">
+          <Name>Documentation</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.headerName">
+          <Name>Name</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.headerMapping">
+          <Name>Mapping</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.headerValue">
+          <Name>Value</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.labelParameterMapping">
+          <Name>Mapping</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_SchedulingHeader">
+          <Name>Scheduling</Name>
+          </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ScheduledDeploymentHeader">
+          <Name>Deployment</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ScheduledDeploymentStartTime">
+          <Name>Start Time</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ScheduledDeploymentEndTime">
+          <Name>End Time</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ScheduledDeploymentDuration">
+          <Name>Duration</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ActualDeploymentHeader">
+          <Name>Actual</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ActualDeploymentStartTime">
+          <Name>Start Time</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ActualDeploymentEndTime">
+          <Name>End time</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ActualDeploymentDuration">
+          <Name>Duration</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ScheduledDowntimeHeader">
+          <Name>Downtime</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ScheduledDowntimeStartTime">
+          <Name>Start Time</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ScheduledDowntimeEndTime">
+          <Name>End Time</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ScheduledDowntimeDuration">
+          <Name>Scheduled Downtime</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ActualDowntimeHeader">
+          <Name>Actual Down Time</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ActualDowntimeStartTime">
+          <Name>Actual Down Time Start Time</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ActualDowntimeEndTime">
+          <Name>Actual Down Time End Time</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ActualDowntimeDuration">
+          <Name>Actual Down Time Duration</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Checkbox_CausesDowntime">
+          <Name>Causes Downtime</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_ParentWorkItem">
+          <Name>Parent Work Item </Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_CreatedOn">
+          <Name>Created On</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_CreatedBy">
+          <Name>Created By</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Label_Status">
+          <Name>Status</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

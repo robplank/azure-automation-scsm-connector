@@ -16,11 +16,12 @@ using Microsoft.EnterpriseManagement.ConsoleFramework;
 using Microsoft.EnterpriseManagement.Configuration;
 
 using Microsoft.EnterpriseManagement.ServiceManager.SharedResources;
-
+using Microsoft.EnterpriseManagement.UI.Extensions.Shared;
 using Microsoft.EnterpriseManagement.UI.SdkDataAccess.DataAdapters;
 using Microsoft.EnterpriseManagement.UI.SdkDataAccess;
 using Microsoft.EnterpriseManagement.GenericForm;
 using Microsoft.EnterpriseManagement;
+using System.ComponentModel;
 
 //Requires Microsoft.EnterpriseManagement.UI.SMControls
 using Microsoft.EnterpriseManagement.UI.WpfControls;    //Contains InstancePickerDialog, UserPicker, and ListPicker
@@ -35,19 +36,105 @@ using Microsoft.EnterpriseManagement.UI.WpfViews;       //Contains FormEvents
 using Microsoft.EnterpriseManagement.UI.FormsInfra;     //Contains PreviewFormCommandEventArgs
 
 //Requires Microsoft.EnterpriseManagement.ServiceManager.Application.Common
-using Microsoft.EnterpriseManagement.ServiceManager.Application.Common; //Contains ConsoleContextHelper
+//using Microsoft.EnterpriseManagement.ServiceManager.Application.Common; //Contains ConsoleContextHelper
 using Microsoft.EnterpriseManagement.Common;
+using SCSM.AzureAutomation.WPF.ConfigItem;
+using System.Windows.Markup;
+using SCSM.AzureAutomation.WPF.WPFData;
 
 namespace SCSM.AzureAutomation.WPF.ConfigItem
 {
     /// <summary>
     /// Interaction logic for AzureAutomationActivityForm.xaml
     /// </summary>
-    public partial class AzureAutomationActivityForm : UserControl
+
+    public partial class AzureAutomationActivityForm : UserControl, IComponentConnector
     {
+        private RelatedItemsPane _relatedItemsPane;
+        
+        private Parametereditor parameterEditor;
+        private RelatedItemsPane configItemsPane;
+        //private SchedulingTab sTab;
+        private IDataItem item;
+        private IList<RunbookParameter> listParams;
+        //internal TabItem tabGeneral;
+        //internal Grid gridRunbook;
+        //internal TabItem tabHistory;
+        //internal TabItem tabRelatedItems;
+        //internal Grid gridScheduling; 
+        private DependencyPropertyDescriptor dpdConnector = DependencyPropertyDescriptor.FromProperty((DependencyProperty)SingleInstancePicker.InstanceProperty, typeof(SingleInstancePicker));
+
+
+
+
         public AzureAutomationActivityForm()
         {
             InitializeComponent();
+            _relatedItemsPane = new RelatedItemsPane(new ConfigItemRelatedItemsConfiguration());
+            tabItemRelItems.Content = _relatedItemsPane;
+        }
+        public void LoadParameterEditor()
+        {
+            this.parameterEditor = new Parametereditor(this.item, this.listParams);
+            this.gridParameterEditor.Children.Add((UIElement)this.parameterEditor);
+        }
+        //public bool IsTemplate
+        //{
+        //    get
+        //    {
+        //        return FormUtilities.get_Instance().IsFormInTemplateMode((FrameworkElement)this);
+        //    }
+        //}
+        public void LoadParentWI(DependencyObject child)
+        {
+            FormWindow formWindow;
+            try
+            {
+                DependencyObject parent = VisualTreeHelper.GetParent(child);
+
+            }
+            catch
+            {
+
+            }
+        }
+
+        private void buttonCreateConnector_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void buttonLoadRunbooks_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void pickerAAConnector_ContextMenuClosing(object sender, ContextMenuEventArgs e)
+        {
+            if(pickerAAConnector.Instance.ToString() != null)
+            {
+                this.buttonLoadRunbooks.IsEnabled = true;
+                this.gridRunbook.Visibility = Visibility.Visible;
+
+
+            }
+        }
+        private void LoadDefault()
+        {
+            if (this.DataContext is IDataItem)
+            {
+                IDataItem instance = (this.DataContext as IDataItem);
+                instance["CreatedDate"] = (object)DateTime.Now;
+                instance["ActivityCreatedBy"] = ConsoleContextHelper.Instance.CurrentUser;
+
+                instance["DisplayName"] = this.item.get_Item("Id"));
+            }
+        }
+
+        private void buttonUpdateParameters_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
+    
 }

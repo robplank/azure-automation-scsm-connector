@@ -163,6 +163,9 @@
     <Compile Include="Enumeration\RunbookType.mpx">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Forms\Activity.frm.mpx">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Forms\Runbook.frm.mpx">
       <SubType>Code</SubType>
     </Compile>
@@ -251,6 +254,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Image\webhook2x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
     <EmbeddedResource Include="Image\webhook2x24.png">
       <SubType>Content</SubType>
     </EmbeddedResource>

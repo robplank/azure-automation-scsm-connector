@@ -92,6 +92,9 @@
     <Reference Include="Microsoft.EnterpriseManagement.UI.Controls">
       <HintPath>..\References\Microsoft.EnterpriseManagement.UI.Controls.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.EnterpriseManagement.UI.Controls.resources">
+      <HintPath>..\References\Microsoft.EnterpriseManagement.UI.Controls.resources.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.EnterpriseManagement.UI.Core">
       <HintPath>..\References\Microsoft.EnterpriseManagement.UI.Core.dll</HintPath>
     </Reference>
@@ -145,6 +148,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="ConfigItem\Parametereditor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Connector\AzureAutomationConfigurationPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -176,6 +183,9 @@
     <Compile Include="ConfigItem\AzureRunbookForm.xaml.cs">
       <DependentUpon>AzureRunbookForm.xaml</DependentUpon>
     </Compile>
+    <Compile Include="ConfigItem\Parametereditor.xaml.cs">
+      <DependentUpon>Parametereditor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Connector\AzureAutomation.cs" />
     <Compile Include="Connector\AzureAutomationConfigurationPage.xaml.cs">
       <DependentUpon>AzureAutomationConfigurationPage.xaml</DependentUpon>
@@ -195,6 +205,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPFData\RunbookParameter.cs" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="ConfigItem\Images\Generic_New_16.png" />
