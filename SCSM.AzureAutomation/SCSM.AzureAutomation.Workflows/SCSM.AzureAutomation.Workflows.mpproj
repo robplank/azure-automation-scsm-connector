@@ -36,27 +36,27 @@
   </ItemGroup>
   <ItemGroup>
     <ManagementPackReference Include="Microsoft.EnterpriseManagement.ServiceManager.UI.Administration">
-      <HintPath>C:\Users\jhennen\Source\Repos\azure-automation-webhook-scsm-connector\SCSM.AzureAutomation\References\Microsoft.EnterpriseManagement.ServiceManager.UI.Administration.mp</HintPath>
+      <HintPath>..\References\Microsoft.EnterpriseManagement.ServiceManager.UI.Administration.mp</HintPath>
       <Alias>EnterpriseManagement</Alias>
       <MinVersion>7.5.3079.0</MinVersion>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.EnterpriseManagement.ServiceManager.UI.Console">
-      <HintPath>C:\Users\jhennen\Source\Repos\azure-automation-webhook-scsm-connector\SCSM.AzureAutomation\References\Microsoft.EnterpriseManagement.ServiceManager.UI.Console.mp</HintPath>
+      <HintPath>..\References\Microsoft.EnterpriseManagement.ServiceManager.UI.Console.mp</HintPath>
       <Alias>Console</Alias>
       <MinVersion>7.5.3079.0</MinVersion>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.Windows.Library">
-      <HintPath>C:\Users\jhennen\Source\Repos\azure-automation-webhook-scsm-connector\SCSM.AzureAutomation\References\Microsoft.Windows.Library.mp</HintPath>
+      <HintPath>..\References\Microsoft.Windows.Library.mp</HintPath>
       <Alias>Windows</Alias>
       <MinVersion>7.5.8501.0</MinVersion>
     </ManagementPackReference>
     <ManagementPackReference Include="ServiceManager.Core.Library">
-      <HintPath>C:\Users\jhennen\Source\Repos\azure-automation-webhook-scsm-connector\SCSM.AzureAutomation\References\ServiceManager.Core.Library.mp</HintPath>
+      <HintPath>..\References\ServiceManager.Core.Library.mp</HintPath>
       <Alias>Core</Alias>
       <MinVersion>7.5.3079.0</MinVersion>
     </ManagementPackReference>
     <ManagementPackReference Include="System.Library">
-      <HintPath>C:\Users\jhennen\Source\Repos\azure-automation-webhook-scsm-connector\SCSM.AzureAutomation\References\System.Library.mp</HintPath>
+      <HintPath>..\References\System.Library.mp</HintPath>
       <Alias>System</Alias>
       <MinVersion>7.5.8501.0</MinVersion>
     </ManagementPackReference>
