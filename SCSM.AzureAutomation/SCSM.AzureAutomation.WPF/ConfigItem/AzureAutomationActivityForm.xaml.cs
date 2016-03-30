@@ -36,7 +36,7 @@ using Microsoft.EnterpriseManagement.UI.WpfViews;       //Contains FormEvents
 using Microsoft.EnterpriseManagement.UI.FormsInfra;     //Contains PreviewFormCommandEventArgs
 
 //Requires Microsoft.EnterpriseManagement.ServiceManager.Application.Common
-//using Microsoft.EnterpriseManagement.ServiceManager.Application.Common; //Contains ConsoleContextHelper
+using Microsoft.EnterpriseManagement.ServiceManager.Application.Common; //Contains ConsoleContextHelper
 using Microsoft.EnterpriseManagement.Common;
 using SCSM.AzureAutomation.WPF.ConfigItem;
 using System.Windows.Markup;
@@ -54,8 +54,10 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
         
         private Parametereditor parameterEditor;
         private RelatedItemsPane configItemsPane;
+        internal Grid gridselectRunbook;
+        internal Grid Runbook;
         //private SchedulingTab sTab;
-        private IDataItem item;
+        //private IDataItem item;
         private IList<RunbookParameter> listParams;
         //internal TabItem tabGeneral;
         //internal Grid gridRunbook;
@@ -71,12 +73,14 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
         {
             InitializeComponent();
             _relatedItemsPane = new RelatedItemsPane(new ConfigItemRelatedItemsConfiguration());
-            tabItemRelItems.Content = _relatedItemsPane;
+            tabRelatedItems.Content = _relatedItemsPane;
+            configItemsPane = new RelatedItemsPane(new ConfigItemRelatedItemsConfiguration());
+            tabConfigItems.Content = configItemsPane;
         }
         public void LoadParameterEditor()
         {
-            this.parameterEditor = new Parametereditor(this.item, this.listParams);
-            this.gridParameterEditor.Children.Add((UIElement)this.parameterEditor);
+            //this.parameterEditor = new Parametereditor(this.item, this.listParams);
+            //this.gridParameterEditor.Children.Add((UIElement)this.parameterEditor);
         }
         //public bool IsTemplate
         //{
@@ -101,23 +105,24 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
 
         private void buttonCreateConnector_Click(object sender, RoutedEventArgs e)
         {
-
+            this.gridSelectRunbook.Visibility = Visibility.Visible;
+            //this.pickerAAConnector.Instance.ToString();
         }
 
-        private void buttonLoadRunbooks_Click(object sender, RoutedEventArgs e)
+        private void buttonSelectRunbook_Click(object sender, RoutedEventArgs e)
         {
             
         }
 
         private void pickerAAConnector_ContextMenuClosing(object sender, ContextMenuEventArgs e)
         {
-            if(pickerAAConnector.Instance.ToString() != null)
-            {
-                this.buttonLoadRunbooks.IsEnabled = true;
-                this.gridRunbook.Visibility = Visibility.Visible;
+            //if(pickerAAConnector.Instance.ToString() != null)
+            //{
+            //    this.buttonSelectRunbook.IsEnabled = true;
+            //    this.gridRunbook.Visibility = Visibility.Visible;
 
 
-            }
+            //}
         }
         private void LoadDefault()
         {
@@ -125,15 +130,15 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
             {
                 IDataItem instance = (this.DataContext as IDataItem);
                 instance["CreatedDate"] = (object)DateTime.Now;
-                instance["ActivityCreatedBy"] = ConsoleContextHelper.Instance.CurrentUser;
+                instance["ActivityCreatedBy"] = Microsoft.EnterpriseManagement.UI.Extensions.Shared.ConsoleContextHelper.Instance.CurrentUser;
 
-                instance["DisplayName"] = this.item.get_Item("Id"));
+                //instance["DisplayName"] = this.DataContex
             }
         }
 
         private void buttonUpdateParameters_Click(object sender, RoutedEventArgs e)
         {
-
+            
         }
     }
     

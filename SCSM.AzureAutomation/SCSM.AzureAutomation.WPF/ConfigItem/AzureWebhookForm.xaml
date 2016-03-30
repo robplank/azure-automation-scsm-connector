@@ -12,7 +12,6 @@
              d:DesignHeight="700" d:DesignWidth="800">
     <UserControl.Resources>
         <ResourceDictionary>
-           
             <BitmapImage x:Key="AAIcon32" UriSource="Images/AzureAutomation2x32.png" />
             <BitmapImage x:Key="AAIcon16" UriSource="Images/AzureAutomation2x16.png" />
             <BitmapImage x:Key="NewIcon" UriSource="Images/Generic_New_16.png" />
@@ -82,9 +81,9 @@
                             <Label Name="lblUri" Content="Webhook URL:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"></Label>
                             <TextBox Name="TxtUri" Grid.Column="1" Grid.Row="1" Text="{Binding Path=Link, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" wpftoolbox:Validation.ValueRequired="True" />
                         </StackPanel>
-                        <!--<StackPanel Grid.Column="0" Grid.Row="3" Margin="10,5,10,5" Grid.ColumnSpan="2">
-                            <Label Name="lblConnector" Content="Azure Automation Connector:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"></Label>
-                            --><!--<Grid Margin="0,0,20,0">
+                        <StackPanel Grid.Column="0" Grid.Row="3" Margin="10,5,10,5" Grid.ColumnSpan="2">
+                            <Label Name="lblRunbook" Content="Azure Automation Runbook:" Grid.Column="0" Grid.Row="1" VerticalAlignment="Center"></Label>
+                            <Grid Margin="0,0,20,0">
                                 <Grid.ColumnDefinitions>
                                     <ColumnDefinition Width="*" />
                                     <ColumnDefinition Width="40" />
@@ -92,17 +91,9 @@
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="1*" />
                                 </Grid.RowDefinitions>
-                                <smcontrols:SingleInstancePicker Grid.Column="0" Grid.Row="0" Name="sipConnector" BaseClassId="b4e302f9-763a-7df3-7013-a796378a2c49" Instance="{Binding Path=webhookconnector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                                <Button x:Name="btnNew" Grid.Column="1" Grid.Row="0" Margin="5,5,5,5" Width="20" Height="20" Click="btnNew_Click">
-
-                                    <Image Source="{StaticResource NewIcon}" 
-                                                   Width="16" 
-                                                   Height="16"/>
-                                        
-                                    </Button>
-                            </Grid>--><!--
-
-                        </StackPanel>-->
+                                <smcontrols:SingleInstancePicker Grid.Column="0" Grid.Row="0" Name="sipConnector" BaseClassId="98d7a1a1-650d-5645-caf7-d42ff445c991" Instance="{Binding Path=webhookconnector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+                            </Grid>
+                        </StackPanel>
                         <StackPanel Grid.Column="1" Grid.Row="2" Margin="10,5,10,5"  >
                         </StackPanel>
                         <StackPanel Grid.Row="4" Grid.ColumnSpan="2" Grid.Column="0"  Margin="10,5,10,5" >
@@ -110,8 +101,6 @@
                             <TextBox Name="TxtNotes" MinHeight="100" Text="{Binding Path=Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" TextWrapping="Wrap" VerticalScrollBarVisibility="Auto"
          AcceptsReturn="True" ></TextBox>
                         </StackPanel>
-
-
                     </Grid>
                 </Expander>
             </TabItem>
@@ -121,6 +110,5 @@
                 <smcontrols:HistoryTab></smcontrols:HistoryTab>
             </TabItem>
         </TabControl>
-
     </Grid>
 </UserControl>

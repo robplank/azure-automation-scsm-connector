@@ -179,8 +179,9 @@
                         <StackPanel x:Name="panelConnectorPicker" Margin="5,5,5,5" Grid.Row="1">
                             <Label x:Name="labelRunbookTitle" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
 								Content="{Binding Strings[labelAAConnector].Value, FallbackValue=[AA Connector:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
-                            <smcontrols:SingleInstancePicker x:Name="pickerAAConnector" BaseClassId="b4e302f9-763a-7df3-7013-a796378a2c49"
-								Instance="{Binding RelatedAAConnector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="307.412" ContextMenuClosing="pickerAAConnector_ContextMenuClosing"/>
+                            <!--<smcontrols:SingleInstancePicker x:Name="pickerAAConnector" BaseClassId="b4e302f9-763a-7df3-7013-a796378a2c49"
+								Instance="{Binding RelatedAAConnector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="307.412" 
+                                ContextMenuClosing="pickerAAConnector_ContextMenuClosing"/>-->
                         </StackPanel>
                         <StackPanel x:Name="panelConnectorText" Margin="5,5,5,5" Grid.Row="1" Visibility="Collapsed">
                             <Label x:Name="labelRunbookTitle2" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
@@ -189,18 +190,17 @@
                         </StackPanel>
                         <StackPanel x:Name="panelButtons" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1">
                             <Label Height="28"/>
-                            <Grid Margin="0,1,0,0">
+                            <Grid Margin="0,1,1,0">
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition x:Name="columnCreate" Width="30"/>
-                                    <ColumnDefinition Width="30"/>
+                                    <ColumnDefinition x:Name="columnCreate" Width="50"/>
+                                    <ColumnDefinition Width="50"/>
                                 </Grid.ColumnDefinitions>
-                                <Button x:Name="buttonCreateConnector" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"
-									Width="23" Height="22" Style="{x:Null}" Visibility="Hidden" Click="buttonCreateConnector_Click"/>
-                                <Button x:Name="buttonLoadRunbooks" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"
-                                        Width="23" Height="22" Style="{x:Null}" Visibility="Visible" Click="buttonLoadRunbooks_Click"/>
+                                
+                                <Button x:Name="buttonSelectRunbook" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Width="89" Height="22" Style="{x:Null}" Visibility="Visible" Click="buttonSelectRunbook_Click" Content="Select Runbook" IsEnabled="False"/>
                             </Grid>
                         </StackPanel>
-                        <Grid x:Name="gridRunbook" Visibility="Visible" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Grid x:Name="gridRunbook" Visibility="Hidden" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="86*"/>
                                 <ColumnDefinition Width="231*"/>
@@ -235,12 +235,15 @@
 									Text="{Binding Documentation, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
                             </StackPanel>
                         </Grid>
+                        <Grid x:Name="gridSelectRunbook" Visibility="Hidden" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            
+                        </Grid>
                     </Grid>
                 </ScrollViewer>
             </TabItem>
             <TabItem x:Name="tabConfigItems"
 				Header="{Binding Strings[tabConfigItems].Value, FallbackValue=[Configuration Items], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
-            <TabItem x:Name="tabScheduling"
+            <!--<TabItem x:Name="tabScheduling"
 				Header="{Binding Strings[tabScheduling].Value, FallbackValue=[Scheduling], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -251,7 +254,7 @@
 						Text="{Binding Strings[Label_SchedulingHeader].Value, FallbackValue=[Scheduling], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
                     <Grid x:Name="gridScheduling" Margin="5,5,5,5" Grid.Row="1"/>
                 </Grid>
-            </TabItem>
+            </TabItem>-->
             <TabItem x:Name="tabRelatedItems"
 				Header="{Binding Strings[tabRelatedItems].Value, FallbackValue=[Related Items], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
             <TabItem x:Name="tabHistory"

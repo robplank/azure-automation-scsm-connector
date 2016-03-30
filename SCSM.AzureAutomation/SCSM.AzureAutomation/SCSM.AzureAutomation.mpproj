@@ -279,6 +279,12 @@
     <Content Include="Image\webhook2x16.png">
       <SubType>Content</SubType>
     </Content>
+	<Reference Include="Microsoft.EnterpriseManagement.UI.Controls.resources, Version=7.1.1000.0, Culture=zh-CHT, PublicKeyToken=31bf3856ad364e35">
+      <Name>Microsoft.EnterpriseManagement.UI.Controls.resources</Name>
+      <AssemblyName>Microsoft.EnterpriseManagement.UI.Controls.resources.dll</AssemblyName>
+      <HintPath>..\References\en\Microsoft.EnterpriseManagement.UI.Controls.resources.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>

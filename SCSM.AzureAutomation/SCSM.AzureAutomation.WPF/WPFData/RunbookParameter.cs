@@ -23,5 +23,6 @@ namespace SCSM.AzureAutomation.WPF.WPFData
         public RunbookParameter()
         {
         }
+        
     }
 }

@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SCSM.AzureAutomation.WPF")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Rob Plank")]
+[assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("SCSM.AzureAutomation.WPF")]
-[assembly: AssemblyCopyright("Copyright © Rob Plank 2015")]
+[assembly: AssemblyCopyright("Copyright © 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
