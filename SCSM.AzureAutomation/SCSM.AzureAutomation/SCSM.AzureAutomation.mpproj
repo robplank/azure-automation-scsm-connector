@@ -49,6 +49,7 @@
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.Library">
+	  <HintPath>..\References\Microsoft.SystemCenter.Library.mp</HintPath>
       <Alias>SC</Alias>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
@@ -101,6 +102,7 @@
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="System.Library">
+	  <HintPath>..\References\System.Library.mp</HintPath>
       <Alias>System</Alias>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
