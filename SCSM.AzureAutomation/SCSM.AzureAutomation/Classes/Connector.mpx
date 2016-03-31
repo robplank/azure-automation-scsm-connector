@@ -8,7 +8,7 @@
           <Property ID="SubscriptionID" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" Required="false" Scale="0"/>
           <Property ID="AutomationAccount" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" Required="false" Scale="0"/>
           <Property ID="ResourceGroup" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" Required="false" Scale="0" />
-          <Property ID="NumberMinutes" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" />
+          <Property ID="RefreshIntervalHours" Type="string" AutoIncrement="false" Key="false" CaseSensitive="false" MaxLength="256" MinLength="0" Required="false" />
         </ClassType>
       </ClassTypes>
     </EntityTypes>
@@ -20,7 +20,7 @@
           <Name>Azure Automation Connector</Name>
         </DisplayString>
         <DisplayString ElementID="SCSM.AzureAutomation.Connector" SubElementID="RunAsAccountName">
-          <Name>runas account username</Name>
+          <Name>Run As Account Username</Name>
         </DisplayString>
         <DisplayString ElementID="SCSM.AzureAutomation.Connector" SubElementID="SubscriptionID">
           <Name>Subscription ID</Name>
@@ -29,10 +29,13 @@
           <Name>Automation Account</Name>
         </DisplayString>
         <DisplayString ElementID="SCSM.AzureAutomation.Connector" SubElementID="RunAsAccountPassword">
-          <Name>runas account password</Name>
+          <Name>Run As Account Password</Name>
         </DisplayString>
         <DisplayString ElementID="SCSM.AzureAutomation.Connector" SubElementID="ResourceGroup">
           <Name>Resource Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.Connector" SubElementID="RefreshIntervalHours">
+          <Name>Refresh Interval (Hours)</Name>
         </DisplayString>
       </DisplayStrings>
     </LanguagePack>

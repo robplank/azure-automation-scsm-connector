@@ -254,23 +254,23 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Image\Runbooks2x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Runbooks2x24.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\webhook2x16.png">
+      <SubType>Content</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\SCSM.AzureAutomation.WPF\SCSM.AzureAutomation.WPF.csproj">
       <Name>SCSM.AzureAutomation.WPF</Name>
       <Project>{2ce767c8-461b-4a7c-a2b5-2dfe4d34b32e}</Project>
       <Private>True</Private>
       <PackageToBundle>True</PackageToBundle>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Image\Runbooks2x16.png">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Image\Runbooks2x24.png">
-      <SubType>Content</SubType>
-    </Content>
-    <Content Include="Image\webhook2x16.png">
-      <SubType>Content</SubType>
-    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>
