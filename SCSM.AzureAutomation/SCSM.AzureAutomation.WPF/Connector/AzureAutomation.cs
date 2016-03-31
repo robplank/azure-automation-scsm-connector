@@ -175,6 +175,7 @@ namespace SCSM.AzureAutomation.WPF.Connector
         private String strConnectorID = String.Empty;
         private Guid guidEnterpriseManagementObjectID = Guid.Empty;
         private String strErrorMessage = String.Empty;
+        private String strRefreshIntervalHours = String.Empty;
 
         public String DisplayName
         {
@@ -251,6 +252,22 @@ namespace SCSM.AzureAutomation.WPF.Connector
                 }
             }
         }
+
+        public String RefreshIntervalHours
+        {
+            get
+            {
+                return this.strRefreshIntervalHours;
+            }
+            set
+            {
+                if (this.strRefreshIntervalHours != value)
+                {
+                    this.strRefreshIntervalHours = value;
+                    this.NotifyPropertyChanged("RefreshIntervalHours");
+                }
+            }
+        }
         public String RunAsAccountPassword
         {
             get
@@ -277,7 +294,7 @@ namespace SCSM.AzureAutomation.WPF.Connector
                 if (this.strConnectorID != value)
                 {
                     this.strConnectorID = value;
-                    this.NotifyPropertyChanged("RuleName");
+                    this.NotifyPropertyChanged("ConnectorID");
                 }
             }
         }
@@ -335,6 +352,7 @@ namespace SCSM.AzureAutomation.WPF.Connector
             this.ResourceGroup = emoAAConnector[classAAConnector, "ResourceGroup"].ToString();
             this.RunAsAccountName = emoAAConnector[classAAConnector, "RunAsAccountName"].ToString();
             this.RunAsAccountPassword = emoAAConnector[classAAConnector, "RunAsAccountPassword"].ToString();
+            this.RefreshIntervalHours = emoAAConnector[classAAConnector, "RefreshIntervalHours"].ToString();
             
         }
 
@@ -404,6 +422,7 @@ namespace SCSM.AzureAutomation.WPF.Connector
                 cemoAAConnector[classAAConnector, "ResourceGroup"].Value = this.ResourceGroup;
                 cemoAAConnector[classAAConnector, "RunAsAccountName"].Value = this.RunAsAccountName;
                 cemoAAConnector[classAAConnector, "RunAsAccountPassword"].Value = this.RunAsAccountPassword;
+                cemoAAConnector[classAAConnector, "RefreshIntervalHours"].Value = this.RefreshIntervalHours;
 
 
                 //Create Connector instance
@@ -428,7 +447,7 @@ namespace SCSM.AzureAutomation.WPF.Connector
                 dsmSchedule.Configuration =
                     "<Scheduler>" +
                         "<SimpleReccuringSchedule>" +
-                            "<Interval Unit=\"Minutes\">60</Interval>" +
+                            "<Interval Unit=\"Hours\">" + strRefreshIntervalHours + "</Interval>" +
                         "</SimpleReccuringSchedule>" +
                         "<ExcludeDates />" +
                     "</Scheduler>";
@@ -502,6 +521,7 @@ namespace SCSM.AzureAutomation.WPF.Connector
             emoAAConnector[classAAConnector, "ResourceGroup"].Value = this.ResourceGroup;
             emoAAConnector[classAAConnector, "RunAsAccountName"].Value = this.RunAsAccountName;
             emoAAConnector[classAAConnector, "RunAsAccountPassword"].Value = this.RunAsAccountPassword;
+            emoAAConnector[classAAConnector, "RefreshIntervalHours"].Value = this.RefreshIntervalHours;
           
             
 
