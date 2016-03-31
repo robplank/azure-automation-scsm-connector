@@ -3,8 +3,8 @@
     <EntityTypes>
       <RelationshipTypes>
         <RelationshipType ID="System.AARunbookActivityRelatesToAAConnector" Accessibility="Public" Abstract="false" Base="System!System.Reference" >
-          <Source ID="RunbookActivity" MinCardinality="0" MaxCardinality ="2147483647" Type="SCSM.AzureAutomation.Runbook.Activity"/>
-          <Target ID="Connector" MinCardinality="0" MaxCardinality="1" Type="SCSM.AzureAutomation.Connector"/>
+          <Source ID="AARunbookActivityRelatesToAAConnectorSource" MinCardinality="0" MaxCardinality ="2147483647" Type="SCSM.AzureAutomation.Runbook.Activity"/>
+          <Target ID="AARunbookActivityRelatesToAAConnectorTarget" MinCardinality="0" MaxCardinality="1" Type="SCSM.AzureAutomation.Connector"/>
         </RelationshipType>
       </RelationshipTypes>
     </EntityTypes>

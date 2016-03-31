@@ -3,12 +3,12 @@
     <EntityTypes>
       <RelationshipTypes>
         <RelationshipType ID="System.AARunbookRelatesToAAConnector" Accessibility="Public" Abstract="false" Base="System!System.Reference" >
-          <Source ID="Runbook" MinCardinality="0" MaxCardinality ="2147483647" Type="SCSM.AzureAutomation.Runbook"/>
-          <Target ID="Connector" MinCardinality="0" MaxCardinality="1" Type="SCSM.AzureAutomation.Connector"/>
+          <Source ID="AARunbookRelatesToAAConnectorSource" MinCardinality="0" MaxCardinality ="2147483647" Type="SCSM.AzureAutomation.Runbook"/>
+          <Target ID="AARunbookRelatesToAAConnectorTarget" MinCardinality="0" MaxCardinality="1" Type="SCSM.AzureAutomation.Connector"/>
         </RelationshipType>
         <RelationshipType ID="System.AARunbookRelatesToWebhook" Accessibility="Public" Abstract="false" Base="System!System.Reference" >
-          <Source ID="Runbook" MinCardinality="0" MaxCardinality="1" Type="SCSM.AzureAutomation.Runbook"/>
-          <Target ID="Webhook" MinCardinality="0" MaxCardinality="2147483647" Type="SCSM.Configitem.Webhook"/>
+          <Source ID="AARunbookRelatesToWebhookSource" MinCardinality="0" MaxCardinality="1" Type="SCSM.AzureAutomation.Runbook"/>
+          <Target ID="AARunbookRelatesToWebhookTarget" MinCardinality="0" MaxCardinality="2147483647" Type="SCSM.Configitem.Webhook"/>
         </RelationshipType>
       </RelationshipTypes>
     </EntityTypes>    
