@@ -124,6 +124,10 @@
     <Reference Include="Microsoft.EnterpriseManagement.UI.WpfWizardFramework">
       <HintPath>..\References\Microsoft.EnterpriseManagement.UI.WpfWizardFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net35\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
     <Reference Include="System" />
@@ -221,7 +225,6 @@
       <DependentUpon>Resources.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WPFData\JsonHelper.cs" />
     <Compile Include="WPFData\RunbookParameter.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -233,6 +236,7 @@
     <EmbeddedResource Include="Resources\AzureAutomation2x24.png" />
     <Resource Include="ConfigItem\Images\AzureAutomation2x16.png" />
     <EmbeddedResource Include="Resources\AzureAutomationIcon.png" />
+    <None Include="packages.config" />
     <None Include="sealkey.snk" />
   </ItemGroup>
   <ItemGroup>

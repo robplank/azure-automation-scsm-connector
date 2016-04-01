@@ -49,7 +49,6 @@
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.SystemCenter.Library">
-	  <HintPath>..\References\Microsoft.SystemCenter.Library.mp</HintPath>
       <Alias>SC</Alias>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
@@ -102,7 +101,6 @@
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="System.Library">
-	  <HintPath>..\References\System.Library.mp</HintPath>
       <Alias>System</Alias>
       <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
@@ -270,21 +268,15 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Image\Runbooks2x16.png">
+    <EmbeddedResource Include="Image\Runbooks2x16.png">
       <SubType>Content</SubType>
-    </Content>
-    <Content Include="Image\Runbooks2x24.png">
+    </EmbeddedResource>
+    <EmbeddedResource Include="Image\Runbooks2x24.png">
       <SubType>Content</SubType>
-    </Content>
+    </EmbeddedResource>
     <Content Include="Image\webhook2x16.png">
       <SubType>Content</SubType>
     </Content>
-	<Reference Include="Microsoft.EnterpriseManagement.UI.Controls.resources, Version=7.1.1000.0, Culture=zh-CHT, PublicKeyToken=31bf3856ad364e35">
-      <Name>Microsoft.EnterpriseManagement.UI.Controls.resources</Name>
-      <AssemblyName>Microsoft.EnterpriseManagement.UI.Controls.resources.dll</AssemblyName>
-      <HintPath>..\References\en\Microsoft.EnterpriseManagement.UI.Controls.resources.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>

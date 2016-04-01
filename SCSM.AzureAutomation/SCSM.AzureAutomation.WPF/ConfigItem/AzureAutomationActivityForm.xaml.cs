@@ -22,7 +22,7 @@ using Microsoft.EnterpriseManagement.UI.SdkDataAccess;
 using Microsoft.EnterpriseManagement.GenericForm;
 using Microsoft.EnterpriseManagement;
 using System.ComponentModel;
-
+using System.ComponentModel.Design;
 //Requires Microsoft.EnterpriseManagement.UI.SMControls
 using Microsoft.EnterpriseManagement.UI.WpfControls;    //Contains InstancePickerDialog, UserPicker, and ListPicker
 
@@ -65,7 +65,7 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
         //internal TabItem tabRelatedItems;
         //internal Grid gridScheduling; 
         private DependencyPropertyDescriptor dpdConnector = DependencyPropertyDescriptor.FromProperty((DependencyProperty)SingleInstancePicker.InstanceProperty, typeof(SingleInstancePicker));
-
+        EnterpriseManagementGroup emg;
 
 
 
@@ -135,10 +135,79 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
                 //instance["DisplayName"] = this.DataContex
             }
         }
+        void GetSession()
+        {
+            // Get the current session, more info: http://blogs.technet.com/servicemanager/archive/2010/02/11/tasks-part-1-tasks-overview.aspx
+            IServiceContainer container = (IServiceContainer)FrameworkServices.GetService(typeof(IServiceContainer));
 
+            Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession curSession =
+                (Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession)container.GetService(typeof(Microsoft.EnterpriseManagement.UI.Core.Connection.IManagementGroupSession));
+            if (curSession == null)
+                throw new ValueUnavailableException("curSession is null");
+            emg = curSession.ManagementGroup;
+        }
         private void buttonUpdateParameters_Click(object sender, RoutedEventArgs e)
         {
-            
+            Guid grunbookclass = new Guid("98d7a1a1-650d-5645-caf7-d42ff445c991");
+            IDataItem runbook = pickerRunbook.Instance as IDataItem;
+            Guid grunbookID = new Guid(runbook["ID$"].ToString());
+            ManagementPackClass mpcrunbook = emg.EntityTypes.GetClass(grunbookclass);
+            EnterpriseManagementObject emorunbook = emg.EntityObjects.GetObject<EnterpriseManagementObject>(grunbookID, ObjectQueryOptions.Default);
+            string Paramsjson = (emorunbook[mpcrunbook, "Parameters"]).ToString();
+            List<RunbookParameter> RunbookParameterList = (List<RunbookParameter>)Newtonsoft.Json.JsonConvert.DeserializeObject(Paramsjson, typeof(List<RunbookParameter>));
+            cmbtext1.ItemsSource = RunbookParameterList;
+            cmbtext1.DisplayMemberPath = "Name";
+            cmbtext2.ItemsSource = RunbookParameterList;
+            cmbtext2.DisplayMemberPath = "Name";
+            cmbtext3.ItemsSource = RunbookParameterList;
+            cmbtext3.DisplayMemberPath = "Name";
+            cmbtext4.ItemsSource = RunbookParameterList;
+            cmbtext4.DisplayMemberPath = "Name";
+            cmbtext5.ItemsSource = RunbookParameterList;
+            cmbtext5.DisplayMemberPath = "Name";
+            cmbtext6.ItemsSource = RunbookParameterList;
+            cmbtext6.DisplayMemberPath = "Name";
+            cmbtext7.ItemsSource = RunbookParameterList;
+            cmbtext7.DisplayMemberPath = "Name";
+            cmbtext8.ItemsSource = RunbookParameterList;
+            cmbtext8.DisplayMemberPath = "Name";
+            cmbtext9.ItemsSource = RunbookParameterList;
+            cmbtext9.DisplayMemberPath = "Name";
+            cmbtext10.ItemsSource = RunbookParameterList;
+            cmbtext10.DisplayMemberPath = "Name";
+            cmbint1.ItemsSource = RunbookParameterList;
+            cmbint1.DisplayMemberPath = "Name";
+            cmbint2.ItemsSource = RunbookParameterList;
+            cmbint2.DisplayMemberPath = "Name";
+            cmbint3.ItemsSource = RunbookParameterList;
+            cmbint3.DisplayMemberPath = "Name";
+            cmbint4.ItemsSource = RunbookParameterList;
+            cmbint4.DisplayMemberPath = "Name";
+            cmbint5.ItemsSource = RunbookParameterList;
+            cmbint5.DisplayMemberPath = "Name";
+            cmbbool1.ItemsSource = RunbookParameterList;
+            cmbbool1.DisplayMemberPath = "Name";
+            cmbbool2.ItemsSource = RunbookParameterList;
+            cmbbool2.DisplayMemberPath = "Name";
+            cmbbool3.ItemsSource = RunbookParameterList;
+            cmbbool3.DisplayMemberPath = "Name";
+            cmbbool4.ItemsSource = RunbookParameterList;
+            cmbbool4.DisplayMemberPath = "Name";
+            cmbbool5.ItemsSource = RunbookParameterList;
+            cmbbool5.DisplayMemberPath = "Name";
+            cmbdate1.ItemsSource = RunbookParameterList;
+            cmbdate1.DisplayMemberPath = "Name";
+            cmbdate2.ItemsSource = RunbookParameterList;
+            cmbdate2.DisplayMemberPath = "Name";
+            cmbdate3.ItemsSource = RunbookParameterList;
+            cmbdate3.DisplayMemberPath = "Name";
+            cmbdate4.ItemsSource = RunbookParameterList;
+            cmbdate4.DisplayMemberPath = "Name";
+            cmbdate5.ItemsSource = RunbookParameterList;
+            cmbdate5.DisplayMemberPath = "Name";
+
+
+            this.Content = "Refresh Parameters";
         }
     }
     

@@ -67,11 +67,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "En", "En", "{EE8F5CE8-311C-
 		References\en\Microsoft.EnterpriseManagement.UI.Controls.resources.dll = References\en\Microsoft.EnterpriseManagement.UI.Controls.resources.dll
 	EndProjectSection
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A2F1BC42-ACD1-453F-A5AC-4D75B58BF209}"
-	ProjectSection(SolutionItems) = preProject
-		..\.gitignore = ..\.gitignore
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -96,20 +91,6 @@ Global
 		{8F589F22-0D80-4E57-A78D-468CB7499AB1}.Release|x64.ActiveCfg = Release|x86
 		{8F589F22-0D80-4E57-A78D-468CB7499AB1}.Release|x86.ActiveCfg = Release|x86
 		{8F589F22-0D80-4E57-A78D-468CB7499AB1}.Release|x86.Build.0 = Release|x86
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Debug|x64.Build.0 = Debug|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Release|x64.ActiveCfg = Release|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Release|x64.Build.0 = Release|Any CPU
-		{C5FBE19C-2D24-41E9-BB15-E09BB699B519}.Release|x86.ActiveCfg = Release|Any CPU
 		{2CE767C8-461B-4A7C-A2B5-2DFE4D34B32E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{2CE767C8-461B-4A7C-A2B5-2DFE4D34B32E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2CE767C8-461B-4A7C-A2B5-2DFE4D34B32E}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
