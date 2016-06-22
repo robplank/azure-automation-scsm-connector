@@ -1,0 +1,27 @@
+﻿<ManagementPackFragment SchemaVersion="SM2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <EntityTypes>
+      <ClassTypes>
+        <ClassType ID="SCSM.AzureAutomation.HybridRunbookWorkerGroup" Accessibility="Public" Abstract="false" Base="System!System.ConfigItem" Hosted="false" Singleton="false">
+          <Property ID="ID" AutoIncrement="true" Type="string" Key="true" CaseSensitive="false" MaxLength="256" DefaultValue="HWG{0}"/>
+          <Property ID="Name" Type="string" Key="false" CaseSensitive="false" MaxLength="256" />
+        </ClassType>
+      </ClassTypes>
+    </EntityTypes>
+  </TypeDefinitions>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="SCSM.AzureAutomation.HybridRunbookWorkerGroup">
+          <Name>Hybrid Runbook Worker Group</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.HybridRunbookWorkerGroup" SubElementID="ID">
+          <Name>ID</Name>
+        </DisplayString>
+        <DisplayString ElementID="SCSM.AzureAutomation.HybridRunbookWorkerGroup" SubElementID="Name">
+          <Name>Name</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>

@@ -176,19 +176,19 @@
                         </Grid.RowDefinitions>
                         <TextBlock Foreground="#4d2703" FontSize="16" Margin="5,5,5,5"
 							Text="{Binding Strings[labelRunbookTitle].Value, FallbackValue=[Runbook Information], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
-                        <StackPanel x:Name="panelConnectorPicker" Margin="5,5,5,5" Grid.Row="1" Visibility="Hidden">
+                        <!--<StackPanel x:Name="panelConnectorPicker" Margin="5,5,5,5" Grid.Row="1" Visibility="Hidden">
                             <Label x:Name="labelRunbookTitle" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top" 
 								Content="{Binding Strings[labelAAConnector].Value, FallbackValue=[AA Connector:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
-                            <!--<smcontrols:SingleInstancePicker x:Name="pickerAAConnector" BaseClassId="b4e302f9-763a-7df3-7013-a796378a2c49"
+                            --><!--<smcontrols:SingleInstancePicker x:Name="pickerAAConnector" BaseClassId="b4e302f9-763a-7df3-7013-a796378a2c49"
 								Instance="{Binding RelatedAAConnector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="307.412" 
-                                ContextMenuClosing="pickerAAConnector_ContextMenuClosing"/>-->
-                        </StackPanel>
-                        <StackPanel x:Name="panelConnectorText" Margin="5,5,5,5" Grid.Row="1" Visibility="Hidden">
+                                ContextMenuClosing="pickerAAConnector_ContextMenuClosing"/>--><!--
+                        </StackPanel>-->
+                        <!--<StackPanel x:Name="panelConnectorText" Margin="5,5,5,5" Grid.Row="1" Visibility="Hidden">
                             <Label x:Name="labelRunbookTitle2" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
 								Content="{Binding Strings[labelAAConnector].Value, FallbackValue=[AA Connector:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
                             <TextBox x:Name="textConnectorName" IsEnabled="false"/>
-                        </StackPanel>
-                        <StackPanel x:Name="panelButtons" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+                        </StackPanel>-->
+                        <!--<StackPanel x:Name="panelButtons" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
                             <Label Height="28"/>
                             <Grid Margin="0,1,1,0">
                                 <Grid.ColumnDefinitions>
@@ -199,7 +199,7 @@
                                 <Button x:Name="buttonSelectRunbook" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"
                                         Width="89" Height="22" Style="{x:Null}" Visibility="Visible" Click="buttonSelectRunbook_Click" Content="Select Runbook" IsEnabled="False"/>
                             </Grid>
-                        </StackPanel>
+                        </StackPanel>-->
                         <Grid x:Name="gridRunbook" Visibility="Visible" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="86*"/>
@@ -212,13 +212,13 @@
                                 <RowDefinition Height="Auto"/>
                             </Grid.RowDefinitions>
                             <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="2">
-
+                                <Label Name="lblSelectRunbook" Content="Select Runbook"></Label>
                                 <smcontrols:SingleInstancePicker x:Name="pickerRunbook" BaseClassId="98d7a1a1-650d-5645-caf7-d42ff445c991"
 								Instance="{Binding RelatedAAConnector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="307.412" 
                                 ContextMenuClosing="pickerAAConnector_ContextMenuClosing"/>
                             </StackPanel>
                             <StackPanel Margin="0,3,0,5" Grid.Column="2" HorizontalAlignment="Left">
-                                
+                                <Label></Label>
                                 <Button x:Name="buttonUpdateParameters" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
 									Content="Load Parameters" Click="buttonUpdateParameters_Click"/>
                             </StackPanel>

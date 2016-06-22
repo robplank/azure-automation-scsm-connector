@@ -143,6 +143,9 @@
     <Compile Include="Classes\DSCConfig.mpx">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Classes\HybridWorker.mpx">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Classes\Runbook.mpx">
       <SubType>Code</SubType>
     </Compile>

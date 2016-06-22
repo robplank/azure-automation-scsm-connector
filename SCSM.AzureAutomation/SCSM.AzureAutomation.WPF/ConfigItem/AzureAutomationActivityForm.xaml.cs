@@ -206,8 +206,8 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
             cmbdate5.ItemsSource = RunbookParameterList;
             cmbdate5.DisplayMemberPath = "Name";
 
+            this.buttonUpdateParameters.Content = "Refresh Parameters";
 
-            this.Content = "Refresh Parameters";
         }
     }
     
