@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="SCSM.AzureAutomation.WPF.ConfigItem.ParameterMapping"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:SCSM.AzureAutomation.WPF.ConfigItem"
+             mc:Ignorable="d" 
+             d:DesignHeight="300" d:DesignWidth="300">
+    <Grid Background="White">
+        <Grid.RowDefinitions>
+            
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            
+        </Grid.ColumnDefinitions>
+        <StackPanel x:Name="ParameterPanel" Grid.Row="0">
+            <Label Content="Parameters:"></Label>
+            <ListView ItemsSource="{Binding}" x:Name="RunbookParameters" SelectionMode="Single" Width="300">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Focusable" Value="False"/>
+                        <Setter Property="Height" Value="52" />
+                        <Style.Triggers>
+                            <Trigger Property="IsMouseOver" Value="true">
+                                <Setter Property="Background" Value="Transparent"/>
+                                <Setter Property="BorderBrush" Value="Transparent" />
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+
+                <GridView x:Name="Parametergridview" AllowsColumnReorder="False">
+                    <GridViewColumn Width="150" Header="Runbook Parameter">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="{Binding Name}" FontSize="15" />
+                                        <TextBlock Text="*" FontSize="15" Visibility="{Binding IsMandatory}" />
+                                    </StackPanel>
+                                    <TextBlock FontSize="10" Text="{Binding Type}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn Width="150" Header="Mapped to">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <ComboBox Loaded="ComboBox_Loaded"
+                                          ItemsSource="{Binding ClassProperties}"
+                                          DisplayMemberPath="DisplayName"
+                                          SelectedValuePath="ID"
+                                          SelectedValue="{Binding PropertyMapping, Mode=TwoWay}"
+                                          
+                                          />
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                </GridView>
+                </ListView.View>
+            </ListView>
+        </StackPanel>
+        
+    </Grid>
+</UserControl>

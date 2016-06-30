@@ -59,6 +59,20 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
 
             slvRunbooks.DataContext = dt.DefaultView;
         }
-   
+
+        private void runbookSelectorListView_MouseDoubleClick(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+
+        }
+
+        private void Button_Ok_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Cancel_Click(object sender, System.Windows.RoutedEventArgs e)
+        {
+
+        }
     }
 }

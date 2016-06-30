@@ -73,42 +73,14 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
         {
             InitializeComponent();
             _relatedItemsPane = new RelatedItemsPane(new ConfigItemRelatedItemsConfiguration());
-            tabRelatedItems.Content = _relatedItemsPane;
+            
             configItemsPane = new RelatedItemsPane(new ConfigItemRelatedItemsConfiguration());
-            tabConfigItems.Content = configItemsPane;
-        }
-        public void LoadParameterEditor()
-        {
-            //this.parameterEditor = new Parametereditor(this.item, this.listParams);
-            //this.gridParameterEditor.Children.Add((UIElement)this.parameterEditor);
-        }
-        //public bool IsTemplate
-        //{
-        //    get
-        //    {
-        //        return FormUtilities.get_Instance().IsFormInTemplateMode((FrameworkElement)this);
-        //    }
-        //}
-        public void LoadParentWI(DependencyObject child)
-        {
-            FormWindow formWindow;
-            try
+            if(this.textJobID != null)
             {
-                DependencyObject parent = VisualTreeHelper.GetParent(child);
-
-            }
-            catch
-            {
-
+                this.tabJob.Visibility = Visibility.Visible;
             }
         }
-
-        private void buttonCreateConnector_Click(object sender, RoutedEventArgs e)
-        {
-            this.gridSelectRunbook.Visibility = Visibility.Visible;
-            //this.pickerAAConnector.Instance.ToString();
-        }
-
+        
         private void buttonSelectRunbook_Click(object sender, RoutedEventArgs e)
         {
             
@@ -131,9 +103,17 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
                 IDataItem instance = (this.DataContext as IDataItem);
                 instance["CreatedDate"] = (object)DateTime.Now;
                 instance["ActivityCreatedBy"] = Microsoft.EnterpriseManagement.UI.Extensions.Shared.ConsoleContextHelper.Instance.CurrentUser;
-
+                if(instance["AAPropertyMapping"] != null)
+                {
+                    LoadParameterMapping(instance["AAPropertyMapping"].ToString());
+                }
                 //instance["DisplayName"] = this.DataContex
             }
+        }
+        private void LoadParameterMapping(string json)
+        {
+            //json
+           //List<RunbookParameter> RunbookParameterList = (List<RunbookParameter>)Newtonsoft.Json.JsonConvert.DeserializeObject(Paramsjson, typeof(List<RunbookParameter>));
         }
         void GetSession()
         {
@@ -148,6 +128,7 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
         }
         private void buttonUpdateParameters_Click(object sender, RoutedEventArgs e)
         {
+            
             Guid grunbookclass = new Guid("98d7a1a1-650d-5645-caf7-d42ff445c991");
             IDataItem runbook = pickerRunbook.Instance as IDataItem;
             Guid grunbookID = new Guid(runbook["ID$"].ToString());
@@ -155,56 +136,61 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
             EnterpriseManagementObject emorunbook = emg.EntityObjects.GetObject<EnterpriseManagementObject>(grunbookID, ObjectQueryOptions.Default);
             string Paramsjson = (emorunbook[mpcrunbook, "Parameters"]).ToString();
             List<RunbookParameter> RunbookParameterList = (List<RunbookParameter>)Newtonsoft.Json.JsonConvert.DeserializeObject(Paramsjson, typeof(List<RunbookParameter>));
-            cmbtext1.ItemsSource = RunbookParameterList;
-            cmbtext1.DisplayMemberPath = "Name";
-            cmbtext2.ItemsSource = RunbookParameterList;
-            cmbtext2.DisplayMemberPath = "Name";
-            cmbtext3.ItemsSource = RunbookParameterList;
-            cmbtext3.DisplayMemberPath = "Name";
-            cmbtext4.ItemsSource = RunbookParameterList;
-            cmbtext4.DisplayMemberPath = "Name";
-            cmbtext5.ItemsSource = RunbookParameterList;
-            cmbtext5.DisplayMemberPath = "Name";
-            cmbtext6.ItemsSource = RunbookParameterList;
-            cmbtext6.DisplayMemberPath = "Name";
-            cmbtext7.ItemsSource = RunbookParameterList;
-            cmbtext7.DisplayMemberPath = "Name";
-            cmbtext8.ItemsSource = RunbookParameterList;
-            cmbtext8.DisplayMemberPath = "Name";
-            cmbtext9.ItemsSource = RunbookParameterList;
-            cmbtext9.DisplayMemberPath = "Name";
-            cmbtext10.ItemsSource = RunbookParameterList;
-            cmbtext10.DisplayMemberPath = "Name";
-            cmbint1.ItemsSource = RunbookParameterList;
-            cmbint1.DisplayMemberPath = "Name";
-            cmbint2.ItemsSource = RunbookParameterList;
-            cmbint2.DisplayMemberPath = "Name";
-            cmbint3.ItemsSource = RunbookParameterList;
-            cmbint3.DisplayMemberPath = "Name";
-            cmbint4.ItemsSource = RunbookParameterList;
-            cmbint4.DisplayMemberPath = "Name";
-            cmbint5.ItemsSource = RunbookParameterList;
-            cmbint5.DisplayMemberPath = "Name";
-            cmbbool1.ItemsSource = RunbookParameterList;
-            cmbbool1.DisplayMemberPath = "Name";
-            cmbbool2.ItemsSource = RunbookParameterList;
-            cmbbool2.DisplayMemberPath = "Name";
-            cmbbool3.ItemsSource = RunbookParameterList;
-            cmbbool3.DisplayMemberPath = "Name";
-            cmbbool4.ItemsSource = RunbookParameterList;
-            cmbbool4.DisplayMemberPath = "Name";
-            cmbbool5.ItemsSource = RunbookParameterList;
-            cmbbool5.DisplayMemberPath = "Name";
-            cmbdate1.ItemsSource = RunbookParameterList;
-            cmbdate1.DisplayMemberPath = "Name";
-            cmbdate2.ItemsSource = RunbookParameterList;
-            cmbdate2.DisplayMemberPath = "Name";
-            cmbdate3.ItemsSource = RunbookParameterList;
-            cmbdate3.DisplayMemberPath = "Name";
-            cmbdate4.ItemsSource = RunbookParameterList;
-            cmbdate4.DisplayMemberPath = "Name";
-            cmbdate5.ItemsSource = RunbookParameterList;
-            cmbdate5.DisplayMemberPath = "Name";
+            ParameterMapping pm = new ParameterMapping();
+
+            pm.DataContext(Class1);           
+            this.ParameterPanel.Children.Add(pm);
+            
+            //cmbtext1.ItemsSource = RunbookParameterList;
+            //cmbtext1.DisplayMemberPath = "Name";
+            //cmbtext2.ItemsSource = RunbookParameterList;
+            //cmbtext2.DisplayMemberPath = "Name";
+            //cmbtext3.ItemsSource = RunbookParameterList;
+            //cmbtext3.DisplayMemberPath = "Name";
+            //cmbtext4.ItemsSource = RunbookParameterList;
+            //cmbtext4.DisplayMemberPath = "Name";
+            //cmbtext5.ItemsSource = RunbookParameterList;
+            //cmbtext5.DisplayMemberPath = "Name";
+            //cmbtext6.ItemsSource = RunbookParameterList;
+            //cmbtext6.DisplayMemberPath = "Name";
+            //cmbtext7.ItemsSource = RunbookParameterList;
+            //cmbtext7.DisplayMemberPath = "Name";
+            //cmbtext8.ItemsSource = RunbookParameterList;
+            //cmbtext8.DisplayMemberPath = "Name";
+            //cmbtext9.ItemsSource = RunbookParameterList;
+            //cmbtext9.DisplayMemberPath = "Name";
+            //cmbtext10.ItemsSource = RunbookParameterList;
+            //cmbtext10.DisplayMemberPath = "Name";
+            //cmbint1.ItemsSource = RunbookParameterList;
+            //cmbint1.DisplayMemberPath = "Name";
+            //cmbint2.ItemsSource = RunbookParameterList;
+            //cmbint2.DisplayMemberPath = "Name";
+            //cmbint3.ItemsSource = RunbookParameterList;
+            //cmbint3.DisplayMemberPath = "Name";
+            //cmbint4.ItemsSource = RunbookParameterList;
+            //cmbint4.DisplayMemberPath = "Name";
+            //cmbint5.ItemsSource = RunbookParameterList;
+            //cmbint5.DisplayMemberPath = "Name";
+            //cmbbool1.ItemsSource = RunbookParameterList;
+            //cmbbool1.DisplayMemberPath = "Name";
+            //cmbbool2.ItemsSource = RunbookParameterList;
+            //cmbbool2.DisplayMemberPath = "Name";
+            //cmbbool3.ItemsSource = RunbookParameterList;
+            //cmbbool3.DisplayMemberPath = "Name";
+            //cmbbool4.ItemsSource = RunbookParameterList;
+            //cmbbool4.DisplayMemberPath = "Name";
+            //cmbbool5.ItemsSource = RunbookParameterList;
+            //cmbbool5.DisplayMemberPath = "Name";
+            //cmbdate1.ItemsSource = RunbookParameterList;
+            //cmbdate1.DisplayMemberPath = "Name";
+            //cmbdate2.ItemsSource = RunbookParameterList;
+            //cmbdate2.DisplayMemberPath = "Name";
+            //cmbdate3.ItemsSource = RunbookParameterList;
+            //cmbdate3.DisplayMemberPath = "Name";
+            //cmbdate4.ItemsSource = RunbookParameterList;
+            //cmbdate4.DisplayMemberPath = "Name";
+            //cmbdate5.ItemsSource = RunbookParameterList;
+            //cmbdate5.DisplayMemberPath = "Name";
 
             this.buttonUpdateParameters.Content = "Refresh Parameters";
 

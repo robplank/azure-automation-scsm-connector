@@ -176,6 +176,9 @@
     <Compile Include="ManagementPack.mpx">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Relationships\HybridRunbookWorker.rs.mpx">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Relationships\Runbook.rs.mpx">
       <SubType>Code</SubType>
     </Compile>

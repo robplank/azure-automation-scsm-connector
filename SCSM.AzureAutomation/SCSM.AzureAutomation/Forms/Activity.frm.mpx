@@ -7,7 +7,7 @@
           <FormString ID="tabGeneral">$MPElement[Name="SCSM.AzureAutomation.tabGeneral"]$</FormString>
           <FormString ID="tabGeneral">$MPElement[Name="SCSM.AzureAutomation.tabGeneral"]$</FormString>
           <FormString ID="tabRunbook">$MPElement[Name="SCSM.AzureAutomation.tabRunbook"]$</FormString>
-          <FormString ID="tabConfigItems">$MPElement[Name="SCSM.AzureAutomation.tabConfigItems"]$</FormString>
+          <FormString ID="tabJob">$MPElement[Name="SCSM.AzureAutomation.tabJob"]$</FormString>
           <FormString ID="tabScheduling">$MPElement[Name="SCSM.AzureAutomation.tabScheduling"]$</FormString>
           <FormString ID="tabRelatedItems">$MPElement[Name="SCSM.AzureAutomation.tabRelatedItems"]$</FormString>
           <FormString ID="tabHistory">$MPElement[Name="SCSM.AzureAutomation.tabHistory"]$</FormString>
@@ -55,7 +55,7 @@
     <StringResources>
       <StringResource ID="SCSM.AzureAutomation.tabGeneral"/>
       <StringResource ID="SCSM.AzureAutomation.tabRunbook"/>
-      <StringResource ID="SCSM.AzureAutomation.tabConfigItems"/>
+      <StringResource ID="SCSM.AzureAutomation.tabJob"/>
       <StringResource ID="SCSM.AzureAutomation.tabScheduling"/>
       <StringResource ID="SCSM.AzureAutomation.tabRelatedItems"/>
       <StringResource ID="SCSM.AzureAutomation.tabHistory"/>
@@ -111,8 +111,8 @@
         <DisplayString ElementID="SCSM.AzureAutomation.tabRunbook">
           <Name>Runbook</Name>
         </DisplayString>
-        <DisplayString ElementID="SCSM.AzureAutomation.tabConfigItems">
-          <Name>Configuration Items</Name>
+        <DisplayString ElementID="SCSM.AzureAutomation.tabJob">
+          <Name>Job</Name>
         </DisplayString>
         <DisplayString ElementID="SCSM.AzureAutomation.tabScheduling">
           <Name>Scheduling</Name>

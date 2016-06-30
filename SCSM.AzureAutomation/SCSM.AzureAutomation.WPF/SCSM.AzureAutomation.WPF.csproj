@@ -154,7 +154,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConfigItem\Parametereditor.xaml">
+    <Page Include="ConfigItem\ParameterMapping.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="ConfigItem\SelectHybridRunbookWorker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -197,8 +201,11 @@
     <Compile Include="ConfigItem\AzureRunbookForm.xaml.cs">
       <DependentUpon>AzureRunbookForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigItem\Parametereditor.xaml.cs">
-      <DependentUpon>Parametereditor.xaml</DependentUpon>
+    <Compile Include="ConfigItem\ParameterMapping.xaml.cs">
+      <DependentUpon>ParameterMapping.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ConfigItem\SelectHybridRunbookWorker.xaml.cs">
+      <DependentUpon>SelectHybridRunbookWorker.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConfigItem\SelectRunbook.xaml.cs">
       <DependentUpon>SelectRunbook.xaml</DependentUpon>
@@ -225,6 +232,7 @@
       <DependentUpon>Resources.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPFData\Class1.cs" />
     <Compile Include="WPFData\RunbookParameter.cs" />
   </ItemGroup>
   <ItemGroup>

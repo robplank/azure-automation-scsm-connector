@@ -14,22 +14,22 @@
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </UserControl.Resources>
-    <Grid Name="GridSelectRunbook" Width="300" Background="White">
+    <Grid Name="GridSelectRunbook"  Background="White" Margin="10">
         <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="36"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
-            <ColumnDefinition />
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="Auto"/>
         </Grid.ColumnDefinitions>
 
 
@@ -40,13 +40,28 @@
             <FilterTextBox FrameworkElement.Name="e" EnableInstantSearch="true"/>
         </StackPanel>-->
         <StackPanel Grid.Row="3" Grid.ColumnSpan="6" >
-            <Label Name="lblAvailableRunbooks" VerticalAlignment="Center" HorizontalAlignment="Left" Width="Auto" Content="Select a Runbook"/>
-            <scwpf:SortableListView Name="slvRunbooks" Style="{StaticResource slvStyle}" 
+            <!--<Label Name="lblAvailableRunbooks" VerticalAlignment="Center" HorizontalAlignment="Left" Width="Auto" Content="Select a Runbook"/>-->
+            <ListView ItemsSource="{Binding}" x:Name="runbookSelectorListView" SelectionChanged="runbookSelectorListView_SelectionChanged" MouseDoubleClick="runbookSelectorListView_MouseDoubleClick" Margin="10,2,10,2">
+                <ListView.ItemContainerStyle>
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Height" Value="25" />
+                    </Style>
+                </ListView.ItemContainerStyle>
+                <ListView.View>
+                    <GridView x:Name="RunbookgridView">
+                        <GridViewColumn Width="280" Header="Name" DisplayMemberBinding="{Binding Name}" />
+                        <GridViewColumn Width="90" Header="Type" DisplayMemberBinding="{Binding Type}" />
+                        <GridViewColumn Width="80" Header="Status" DisplayMemberBinding="{Binding Status}" />
+                        <GridViewColumn Width="80" Header="AA Account" DisplayMemberBinding="{Binding AAAccount}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <!--<scwpf:SortableListView Name="slvRunbooks" Style="{StaticResource slvStyle}" 
                         Height="300" SelectionMode="Single"
                         ItemsSource="{Binding Path=Table,Mode=OneWay}" 
                         >
-                <ListView.View>
-                    <GridView>
+                <ListView.View>-->
+                    <!--<GridView>
                         <scwpf:SortableGridViewColumn SortPropertyName="Name" GridViewColumn.Width="200"
                                     GridViewColumn.DisplayMemberBinding="{Binding Path=Name, Mode=OneWay}"
                                     GridViewColumn.Header="Name"/>
@@ -55,16 +70,16 @@
                                     GridViewColumn.Header="Created On"/>
                     </GridView>
                 </ListView.View>
-            </scwpf:SortableListView>
+            </scwpf:SortableListView>-->
         </StackPanel>
-        <StackPanel Grid.Row="4" HorizontalAlignment="Stretch" Background="#e9edf2" Grid.ColumnSpan="6">
-            <StackPanel HorizontalAlignment="Right" Background="#e9edf2" Orientation="Horizontal"
+        <StackPanel Grid.Row="4" HorizontalAlignment="Stretch" Background="white" Grid.ColumnSpan="7" Margin="3,0,39.857,0">
+            <StackPanel HorizontalAlignment="Right" Background="White"  Orientation="Horizontal"
                   VerticalAlignment="Center" Margin="3,5,3,5">
-                <Button Name="h" Height="24" Width="Auto" VerticalAlignment="Center" IsDefault="true" IsEnabled="false"
+                <Button Name="Button_Ok" Height="24" Width="Auto" VerticalAlignment="Center" IsDefault="true" IsEnabled="false"
                         MinWidth="65" Padding="5,2"
-                        Content="OK"/>
-                <Button Name="i" Height="24" Width="Auto" VerticalAlignment="Center" MinWidth="65" Padding="5,2"
-                        Content="Cancel"/>
+                        Content="OK" Click="Button_Ok_Click"/>
+                <Button Name="Button_Cancel" Height="24" Width="Auto" VerticalAlignment="Center" MinWidth="65" Padding="5,2"
+                        Content="Cancel" Click="Button_Cancel_Click"/>
             </StackPanel>
         </StackPanel>
 
