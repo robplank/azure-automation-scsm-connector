@@ -42,6 +42,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="StartRunbook.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MonitorJobs.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="RefreshConnector.cs">
       <SubType>Component</SubType>

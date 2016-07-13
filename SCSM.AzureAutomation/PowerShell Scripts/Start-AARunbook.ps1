@@ -3,11 +3,17 @@
 #
 # Start Azure Automation Runbook
 
+Param(
+[string]$RBAID
+)
 $TypePath = (Get-ItemProperty "hklm:\software\microsoft\system center\2010\service manager\setup").InstallDirectory + "scsm.azureautomation.wpf.dll"
 Add-Type -Path $TypePath
 
-$SMClass = Get-SCSMClass -Name SCSM.AzureAutomation.Connector$
-$SMObject = Get-SCSMObject -Class $SMClass 
+$SMObj = Get-SCSMObject -Class (Get-SCSMClass -Name SCSM.AzureAutomation.Runbook.Activity$ ) -Filter "ID -eq $RBAID"
+$ConnectorID = $SMObj.ConnectorID
+
+
+$SMObject = Get-SCSMObject -Class (Get-SCSMClass -Name SCSM.AzureAutomation.Connector$) -Filter "ConnectorID -eq $ConnectorID"
 $SubscriptionID = $SMObject.SubscriptionID
 $AutomationAccountName = $SMObject.AutomationAccount
 $username = $SMObject.RunAsAccountName
@@ -16,10 +22,35 @@ $secpassword = ConvertTo-SecureString([SCSM.AzureAutomation.WPF.Connector.String
 $ResourceGroup = $SMObject.ResourceGroup
 
 $Creds = New-Object System.Management.Automation.PSCredential ($username, $secpassword)
+
+if($SMObj.AAPropertyMapping -ne $null)
+{
+	## Build Params
+	$Params = $SMObject.AAPropertyMapping | ConvertFrom-Json
+}
 Login-AzureRmAccount -Credential $Creds -SubscriptionId $SubscriptionID
 
-$JobID = Start-AzureRmAutomationRunbook -Name $RunbookName -AutomationAccountName $AccountName -ResourceGroupName $ResourceGroup -Parameters $Params
+If($HBRW)
+{
+	if($Params)
+	{
+		$JobID = Start-AzureRmAutomationRunbook -Name $RunbookName -AutomationAccountName $AccountName -ResourceGroupName $ResourceGroup -Parameters $Params -RunOn $HBRW
+	}
+	else
+	{
+		$JobID = Start-AzureRmAutomationRunbook -Name $RunbookName -AutomationAccountName $AccountName -ResourceGroupName $ResourceGroup -RunOn $HBRW
+	}
+}
+else
+{
+	if($Params)
+	{
+		$JobID = Start-AzureRmAutomationRunbook -Name $RunbookName -AutomationAccountName $AccountName -ResourceGroupName $ResourceGroup -Parameters $Params
+	}
+	else
+	{
+		$JobID = Start-AzureRmAutomationRunbook -Name $RunbookName -AutomationAccountName $AccountName -ResourceGroupName $ResourceGroup 
+	}
+}
 
-$SMClass = Get-SCSMClass -Name SCSM.AzureAutomation.Runbook.Activity$ 
-$SMObj = Get-SCSMObject -Class $SMClass -Filter "ID -eq $ID"
 Set-SCSMObject -SMObject $SMObj -Property JobID -Value $JobID

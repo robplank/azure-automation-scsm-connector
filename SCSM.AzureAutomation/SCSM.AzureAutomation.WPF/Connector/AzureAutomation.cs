@@ -1,5 +1,5 @@
 ﻿using SCSM.AzureAutomation.WPF.Connector;
-
+using System.Diagnostics;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -414,7 +414,7 @@ namespace SCSM.AzureAutomation.WPF.Connector
                 //Get the Scheduler data source module type from the System MP and the Windows Workflow Task Write Action Module Type from the Subscription MP
                 ManagementPackDataSourceModuleType dsmtScheduler = (ManagementPackDataSourceModuleType)mpSystem.GetModuleType("System.Scheduler");
                 ManagementPackWriteActionModuleType wamtWindowsWorkflowTaskWriteAction = (ManagementPackWriteActionModuleType)mpSubscriptions.GetModuleType("Microsoft.EnterpriseManagement.SystemCenter.Subscription.WindowsWorkflowTaskWriteAction");
-
+                Debugger.Launch();
                 //Create a new rule for the CSV Connector in the Connectors MP.  Set the name of this rule to be the same as the connector instance ID so there is a pairing between them
                 ManagementPackRule ruleAAConnector = new ManagementPackRule(mpAAConnectorWorkflows, strConnectorID);
 
@@ -482,8 +482,14 @@ namespace SCSM.AzureAutomation.WPF.Connector
 
         }
 
+        private void CreateConnectorInstance1()
+        {
+
+        }
+
         private void UpdateConnectorInstance() 
         {
+            
             //Get the server name to connect to and connect
             String strServerName = Registry.GetValue("HKEY_CURRENT_USER\\Software\\Microsoft\\System Center\\2010\\Service Manager\\Console\\User Settings", "SDKServiceMachine", "localhost").ToString();
             EnterpriseManagementGroup emg = new EnterpriseManagementGroup(strServerName);

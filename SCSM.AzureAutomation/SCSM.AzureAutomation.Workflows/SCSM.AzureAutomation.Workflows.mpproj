@@ -30,7 +30,13 @@
     <AssemblyOriginatorKeyFile />
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="SCSM.AzureAutomation.Workflows.mpx">
+    <Compile Include="ActivityWorkflows\Monitor Jobs Workflow.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ActivityWorkflows\Start Runbook Workflow.mpx">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ConnectorWorkflows\RefreshConnector.mpx">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -44,6 +50,18 @@
       <HintPath>..\References\Microsoft.EnterpriseManagement.ServiceManager.UI.Console.mp</HintPath>
       <Alias>Console</Alias>
       <MinVersion>7.5.3079.0</MinVersion>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Library">
+      <HintPath>C:\Users\rplank\Source\Repos\azure-automation-webhook-scsm-connector\SCSM.AzureAutomation\References\Microsoft.SystemCenter.Library.mp</HintPath>
+      <Alias>SC</Alias>
+      <MinVersion>7.0.8433.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="Microsoft.SystemCenter.Subscriptions">
+      <HintPath>C:\Users\rplank\Source\Repos\azure-automation-webhook-scsm-connector\SCSM.AzureAutomation\References\Microsoft.SystemCenter.Subscriptions.mp</HintPath>
+      <Alias>MSS</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
     </ManagementPackReference>
     <ManagementPackReference Include="Microsoft.Windows.Library">
       <HintPath>..\References\Microsoft.Windows.Library.mp</HintPath>
@@ -60,6 +78,30 @@
       <Alias>System</Alias>
       <MinVersion>7.5.8501.0</MinVersion>
     </ManagementPackReference>
+    <ManagementPackReference Include="System.WorkItem.Activity.Library">
+      <HintPath>C:\Users\rplank\Source\Repos\azure-automation-webhook-scsm-connector\SCSM.AzureAutomation\References\System.WorkItem.Activity.Library.mp</HintPath>
+      <Alias>SWAL</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+    <ManagementPackReference Include="System.WorkItem.Library">
+      <HintPath>C:\Users\rplank\Source\Repos\azure-automation-webhook-scsm-connector\SCSM.AzureAutomation\References\System.WorkItem.Library.mp</HintPath>
+      <Alias>SWL</Alias>
+      <MinVersion>7.5.3079.0</MinVersion>
+      <PackageToBundle>False</PackageToBundle>
+    </ManagementPackReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ActivityWorkflows" />
+    <Folder Include="ConnectorWorkflows" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SCSM.AzureAutomation\SCSM.AzureAutomation.mpproj">
+      <Name>SCSM.AzureAutomation</Name>
+      <Project>{8f589f22-0d80-4e57-a78d-468cb7499ab1}</Project>
+      <Private>True</Private>
+      <Alias>SA</Alias>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\VSAC\Microsoft.SystemCenter.OperationsManager.targets" />
 </Project>

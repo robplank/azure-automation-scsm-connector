@@ -142,7 +142,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Page Include="ConfigItem\AzureAutomationActivityForm.xaml">
+    <Page Include="WorkItem\AzureAutomationActivityForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -154,15 +154,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConfigItem\ParameterMapping.xaml">
+    <Page Include="WorkItem\ParameterMapping.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConfigItem\SelectHybridRunbookWorker.xaml">
+    <Page Include="WorkItem\SelectHybridRunbookWorker.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="ConfigItem\SelectRunbook.xaml">
+    <Page Include="WorkItem\SelectRunbook.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -192,7 +192,7 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConfigItem\AzureAutomationActivityForm.xaml.cs">
+    <Compile Include="WorkItem\AzureAutomationActivityForm.xaml.cs">
       <DependentUpon>AzureAutomationActivityForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="ConfigItem\AzureWebhookForm.xaml.cs">
@@ -201,13 +201,13 @@
     <Compile Include="ConfigItem\AzureRunbookForm.xaml.cs">
       <DependentUpon>AzureRunbookForm.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigItem\ParameterMapping.xaml.cs">
+    <Compile Include="WorkItem\ParameterMapping.xaml.cs">
       <DependentUpon>ParameterMapping.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigItem\SelectHybridRunbookWorker.xaml.cs">
+    <Compile Include="WorkItem\SelectHybridRunbookWorker.xaml.cs">
       <DependentUpon>SelectHybridRunbookWorker.xaml</DependentUpon>
     </Compile>
-    <Compile Include="ConfigItem\SelectRunbook.xaml.cs">
+    <Compile Include="WorkItem\SelectRunbook.xaml.cs">
       <DependentUpon>SelectRunbook.xaml</DependentUpon>
     </Compile>
     <Compile Include="Connector\AzureAutomation.cs" />
@@ -231,8 +231,10 @@
     <Compile Include="CustomControls\Resources.xaml.cs">
       <DependentUpon>Resources.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\ObjectHelpers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WPFData\Class1.cs" />
+    <Compile Include="WPFData\AutomationActivityProperties.cs" />
+    <Compile Include="WPFData\ParameterMappingData.cs" />
     <Compile Include="WPFData\RunbookParameter.cs" />
   </ItemGroup>
   <ItemGroup>

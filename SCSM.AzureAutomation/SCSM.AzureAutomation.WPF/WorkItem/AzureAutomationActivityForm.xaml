@@ -1,0 +1,385 @@
+﻿<UserControl x:Class="SCSM.AzureAutomation.WPF.WorkItem.AzureAutomationActivityForm"
+             xmlns:Forms="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.Application.RunbookActivity.Forms;assembly=Microsoft.EnterpriseManagement.ServiceManager.Application.RunbookActivity.Forms"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:scwpf="http://schemas.microsoft.com/SystemCenter/Common/UI/Wpf"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
+             xmlns:gl="clr-namespace:System.Globalization;assembly=mscorlib"
+             xmlns:my="http://schemas.microsoft.com/wpf/2008/toolkit"
+             xmlns:smcontrols="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfControls;assembly=Microsoft.EnterpriseManagement.UI.SMControls"
+             xmlns:views="clr-namespace:Microsoft.EnterpriseManagement.UI.FormsInfra;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra"
+             xmlns:st="clr-namespace:Microsoft.EnterpriseManagement.ServiceManager.ActivityManagement.Forms;assembly=Microsoft.EnterpriseManagement.ServiceManager.ActivityManagement.Forms"
+             xmlns:blr="clr-namespace:Microsoft.EnterpriseManagement.UI.WpfToolbox;assembly=Microsoft.EnterpriseManagement.UI.FormsInfra" 
+             xmlns:local="clr-namespace:SCSM.AzureAutomation.WPF.WorkItem" 
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Microsoft.EnterpriseManagement.ServiceManager.SharedResources;component/SolutionsStyles/ActivityManagementStyles.xaml"/>
+                <ResourceDictionary Source="/Microsoft.EnterpriseManagement.ServiceManager.SharedResources;component/BasicControls/BasicControlsCollection.xaml"/>
+                <ResourceDictionary Source="/Microsoft.EnterpriseManagement.ServiceManager.SharedResources;component/Brushes/Brushes.xaml"/>
+                <ResourceDictionary Source="/Microsoft.EnterpriseManagement.ServiceManager.SharedResources;component/FormControls/FormControlsCollection.xaml"/>
+                <ResourceDictionary Source="/Microsoft.EnterpriseManagement.ServiceManager.SharedResources;component/BasicControls/BasicStyles/Dialog.xaml"/>
+                <ResourceDictionary Source="/Microsoft.EnterpriseManagement.ServiceManager.SharedResources;component/uXeControls/uXeControlsCollection.xaml"/>
+                <ResourceDictionary Source="/Microsoft.EnterpriseManagement.ServiceManager.SharedResources;component/SMControls/SMControlsCollection.xaml"/>
+                <ResourceDictionary Source="/Microsoft.EnterpriseManagement.ServiceManager.SharedResources;component/AdvancedControls/AdvancedControlsCollection.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <blr:BusinessLogic.Rules>
+        <blr:RuleCollection>
+            <blr:Rule>
+                <blr:Rule.Triggers>
+                    <blr:PropertyChangedTrigger Binding="{Binding DataContext, RelativeSource={x:Static RelativeSource.Self}}"/>
+                    <blr:RoutedEventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+                    <blr:PropertyChangedTrigger Binding="{Binding Name}"/>
+                </blr:Rule.Triggers>
+                <blr:Rule.Conditions>
+                    <blr:PropertyMatchCondition Binding="{Binding IsTemplate, RelativeSource={x:Static RelativeSource.Self}}">
+                        <blr:PropertyMatchCondition.Value>
+                            <sys:Boolean>False</sys:Boolean>
+                        </blr:PropertyMatchCondition.Value>
+                    </blr:PropertyMatchCondition>
+                    <blr:PropertyMatchCondition Operation="NotEquals"
+                                      Binding="{Binding DataContext, RelativeSource={x:Static RelativeSource.Self}}"
+                                      Value="{x:Null}"/>
+                    <blr:PropertyMatchCondition Binding="{Binding IsLoaded, RelativeSource={x:Static RelativeSource.Self}}">
+                        <blr:PropertyMatchCondition.Value>
+                            <sys:Boolean>True</sys:Boolean>
+                        </blr:PropertyMatchCondition.Value>
+                    </blr:PropertyMatchCondition>
+                </blr:Rule.Conditions>
+                <blr:ModifyPropertyAction Binding="{Binding (views:FormView.WindowTitle), Mode=TwoWay, RelativeSource={x:Static RelativeSource.Self}}">
+                    <blr:ModifyPropertyAction.ValueBinding>
+                        <MultiBinding Mode="OneWay">
+                            <MultiBinding.Converter>
+                                <blr:FormatterConverter/>
+                            </MultiBinding.Converter>
+                            <Binding Path="Id" Mode="OneWay" FallbackValue="[Id]"/>
+                            <Binding Path="Title" Mode="OneWay" FallbackValue="[AA Runbook Activity]"/>
+                        </MultiBinding>
+                    </blr:ModifyPropertyAction.ValueBinding>
+                </blr:ModifyPropertyAction>
+            </blr:Rule>
+            <blr:Rule>
+                <blr:Rule.Triggers>
+                    <blr:RoutedEventTrigger RoutedEvent="FrameworkElement.Loaded"/>
+                </blr:Rule.Triggers>
+                <blr:Rule.Conditions>
+                    <blr:PropertyMatchCondition Binding="{Binding IsTemplate, RelativeSource={x:Static RelativeSource.Self}}">
+                        <blr:PropertyMatchCondition.Value>
+                            <sys:Boolean>True</sys:Boolean>
+                        </blr:PropertyMatchCondition.Value>
+                    </blr:PropertyMatchCondition>
+                </blr:Rule.Conditions>
+                <blr:ModifyPropertyAction Binding="{Binding (views:FormView.WindowTitle), Mode=TwoWay, RelativeSource={x:Static RelativeSource.Self}}">
+                    <blr:ModifyPropertyAction.ValueBinding>
+                        <MultiBinding Mode="OneWay">
+                            <MultiBinding.Converter>
+                                <blr:FormatterConverter/>
+                            </MultiBinding.Converter>
+                            <Binding RelativeSource="{x:Static RelativeSource.Self}" Path="TemplateItem[DisplayName]" Mode="OneWay"
+                       FallbackValue="[AA Runbook]"/>
+                        </MultiBinding>
+                    </blr:ModifyPropertyAction.ValueBinding>
+                </blr:ModifyPropertyAction>
+            </blr:Rule>
+        </blr:RuleCollection>
+    </blr:BusinessLogic.Rules>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition x:Name="gridRowBanner" Height="66"/>
+            <RowDefinition x:Name="gridRowFormContent"/>
+        </Grid.RowDefinitions>
+        <Forms:RunbookActivityBanner/>
+        <TabControl x:Name="tabControl" Grid.Row="1" HorizontalAlignment="Stretch" Margin="0,0,0,0"
+			VerticalAlignment="Stretch" MinWidth="400">
+            <TabItem x:Name="tabGeneral"
+				Header="{Binding Strings[tabGeneral].Value, FallbackValue=[General], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="10,10,10,10" Width="Auto" Height="Auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="225*"/>
+                            <ColumnDefinition Width="93*"/>
+                            <ColumnDefinition Width="212*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Foreground="#4d2703" FontSize="16" Margin="5,5,5,5"
+							Text="{Binding Strings[labelGeneralTitle].Value, FallbackValue=[Azure Automation Runbook Activity], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}" Grid.ColumnSpan="2"/>
+                        <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="3" Grid.Row="1">
+                            <Label x:Name="labelTitle" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Content="{Binding Strings[labelTitle].Value, FallbackValue=[Title:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
+                            <TextBox x:Name="textTitle" Height="23" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto"
+								MaxLength="256" MinHeight="24">
+                                <Binding Path="Title" Mode="TwoWay" UpdateSourceTrigger="Default"/>
+                            </TextBox>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="3" Grid.Row="2">
+                            <Label x:Name="labelDescription" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Content="{Binding Strings[labelDescription].Value, FallbackValue=[Description:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
+                            <TextBox x:Name="textDescription" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Width="Auto" TextWrapping="WrapWithOverflow" AcceptsReturn="true" MaxLength="4000" MinHeight="130"
+								MaxHeight="130" VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+								Text="{Binding Description, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="2" Grid.Row="3" Grid.Column="0">
+                            <Label x:Name="labelArea" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Content="{Binding Strings[labelArea].Value, FallbackValue=[Area:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
+                            <smcontrols:ListPicker ParentCategoryId="0d1c5836-644e-bfe4-5adf-cfe40fc08dfa"
+								SelectedItem="{Binding Area, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="1" Grid.Row="3" Grid.Column="2">
+                            <Label x:Name="labelStage" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Content="{Binding Strings[labelStage].Value, FallbackValue=[Stage:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
+                            <smcontrols:ListPicker ParentCategoryId="f05ea0f0-bd02-143e-2b74-303609750328"
+								SelectedItem="{Binding Stage, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="2" Grid.Row="4" Grid.Column="0">
+                            <Label x:Name="labelAassignedTo" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Content="{Binding Strings[labelAssignedTo].Value, FallbackValue=[AssignedTo:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
+                            <smcontrols:UserPicker User="{Binding ActivityAssignedTo, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+
+                        </StackPanel>
+                        <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="3" Grid.Row="5">
+                            <Label x:Name="labelOutput" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Content="{Binding Strings[labelOutput].Value, FallbackValue=[Output:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
+                            <TextBox x:Name="textOutput" Height="Auto" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto"
+								TextWrapping="Wrap" IsReadOnly="true" MaxLength="4000" MinHeight="200" MaxHeight="200"
+								VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Disabled"
+								Text="{Binding Output, Mode=OneWay}"/>
+                        </StackPanel>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem x:Name="tabRunbook"
+				Header="{Binding Strings[tabRunbook].Value, FallbackValue=[Runbook], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}">
+                <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                    <Grid Margin="10,10,10,10" Width="Auto" Height="auto">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".6*"/>
+                            <ColumnDefinition Width=".4*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="Auto"/>
+                        </Grid.RowDefinitions>
+                        <TextBlock Foreground="#4d2703" FontSize="16" Margin="5,5,5,5"
+							Text="{Binding Strings[labelRunbookTitle].Value, FallbackValue=[Runbook Information], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
+                        <!--<StackPanel x:Name="panelConnectorPicker" Margin="5,5,5,5" Grid.Row="1" Visibility="Hidden">
+                            <Label x:Name="labelRunbookTitle" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top" 
+								Content="{Binding Strings[labelAAConnector].Value, FallbackValue=[AA Connector:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
+                            --><!--<smcontrols:SingleInstancePicker x:Name="pickerAAConnector" BaseClassId="b4e302f9-763a-7df3-7013-a796378a2c49"
+								Instance="{Binding RelatedAAConnector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="307.412" 
+                                ContextMenuClosing="pickerAAConnector_ContextMenuClosing"/>--><!--
+                        </StackPanel>-->
+                        <!--<StackPanel x:Name="panelConnectorText" Margin="5,5,5,5" Grid.Row="1" Visibility="Hidden">
+                            <Label x:Name="labelRunbookTitle2" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Content="{Binding Strings[labelAAConnector].Value, FallbackValue=[AA Connector:], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}"/>
+                            <TextBox x:Name="textConnectorName" IsEnabled="false"/>
+                        </StackPanel>-->
+                        <!--<StackPanel x:Name="panelButtons" Margin="5,5,5,5" Grid.Row="1" Grid.Column="1" Visibility="Hidden">
+                            <Label Height="28"/>
+                            <Grid Margin="0,1,1,0">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition x:Name="columnCreate" Width="50"/>
+                                    <ColumnDefinition Width="50"/>
+                                </Grid.ColumnDefinitions>
+                                
+                                <Button x:Name="buttonSelectRunbook" Grid.Column="0" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                        Width="89" Height="22" Style="{x:Null}" Visibility="Visible" Click="buttonSelectRunbook_Click" Content="Select Runbook" IsEnabled="False"/>
+                            </Grid>
+                        </StackPanel>-->
+                        <Grid x:Name="gridRunbook" Visibility="Visible" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="160"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                                <RowDefinition Height="Auto"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="1" Grid.Column="0">
+                                <Label Name="lblSelectRunbook" Content="Select Runbook"></Label>
+                                <smcontrols:SingleInstancePicker x:Name="pickerRunbook" BaseClassId="98d7a1a1-650d-5645-caf7-d42ff445c991"  
+								Instance="{Binding RelatedAAConnector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="150" 
+                                ContextMenuClosing="pickerAAConnector_ContextMenuClosing"/>
+                            </StackPanel>
+                            <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="1" Grid.Column="2">
+                                <Label Name="lblSelectRunOn" Content="Select RunOn"></Label>
+                                <smcontrols:SingleInstancePicker x:Name="pickerhbwg" BaseClassId="98d7a1a1-650d-5645-caf7-d42ff445c991"
+								Instance="{Binding RelatedAAConnector, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" HorizontalAlignment="Left" Width="150" 
+                                ContextMenuClosing="pickerAAConnector_ContextMenuClosing"/>
+                            </StackPanel>
+                            <StackPanel Margin="0,3,0,5" Grid.Column="1" HorizontalAlignment="Left">
+                                <Label></Label>
+                                <Button x:Name="buttonUpdateParameters" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+									Content="Load Parameters" Click="buttonUpdateParameters_Click"/>
+                            </StackPanel>
+                            <StackPanel Margin="5,5,5,5" Grid.Row="1" Grid.ColumnSpan="3" Name="ParameterPanel">
+                                <!--<Label x:Name="labelParameterMapping" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+									Content="Parameter Values"/>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="86*"/>
+                                        <ColumnDefinition Width="231*"/>
+                                        <ColumnDefinition Width="211*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <StackPanel Name="Parameterpanel" Grid.ColumnSpan="2" Grid.Column="0" Grid.Row="0" >
+                                        <Label Name="lblparameterName" Content="Parameter Name" Grid.ColumnSpan="2" Grid.Column="0"></Label>
+                                        
+                                        <ComboBox Name="cmbtext1" Grid.ColumnSpan="1" Grid.Row="2" Grid.Column="0" SelectionChanged="cmbtext1_SelectionChanged"></ComboBox>
+                                        <ComboBox Name="cmbtext2" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbtext3" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbtext4" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbtext5" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbtext6" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbtext7" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbtext8" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbtext9" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbtext10" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbltext1" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbltext2" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbltext3" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbltext4" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbltext5" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbint1" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbint2" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbint3" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbint4" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbint5" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbbool1" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbbool2" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbbool3" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbbool4" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbbool5" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbdate1" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbdate2" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbdate3" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbdate4" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                        <ComboBox Name="cmbdate5" Grid.ColumnSpan="1" Grid.Row="1"></ComboBox>
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="2" Grid.Row="0">
+                                        <Label Content="Mapped To"></Label>
+                                        <Label Content="Text1" MinHeight="27"></Label>
+                                        <Label Content="Test2" MinHeight="27"></Label>
+                                        <Label Content="Test3" MinHeight="27"></Label>
+                                        <Label Content="Text4" MinHeight="27"></Label>
+                                        <Label Content="Text5" MinHeight="27"></Label>
+                                        <Label Content="Text6" MinHeight="30"></Label>
+                                        <Label Content="Text7" MinHeight="27"></Label>
+                                        <Label Content="Text8" MinHeight="30"></Label>
+                                        <Label Content="Text9" MinHeight="27"></Label>
+                                        <Label Content="Text10" MinHeight="27"></Label>
+                                        <Label Content="Long Text1" MinHeight="27" ></Label>
+                                        <Label Content="Long Text2" MinHeight="30"></Label>
+                                        <Label Content="Long Text3" MinHeight="27"></Label>
+                                        <Label Content="Long Text4" MinHeight="27"></Label>
+                                        <Label Content="Long Text5" MinHeight="30"></Label>
+                                        <Label Content="Integer1" MinHeight="27"></Label>
+                                        <Label Content="Integer2"  MinHeight="27"></Label>
+                                        <Label Content="Integer3" MinHeight="27"></Label>
+                                        <Label Content="Integer4" MinHeight="27"></Label>
+                                        <Label Content="Integer5" MinHeight="27"></Label>
+                                        <Label Content="bool1" MinHeight="30"></Label>
+                                        <Label Content="bool2" MinHeight="27"></Label>
+                                        <Label Content="bool3" MinHeight="30"></Label>
+                                        <Label Content="bool4" MinHeight="27"></Label>
+                                        <Label Content="bool5" MinHeight="27"></Label>
+                                        <Label Content="date1" MinHeight="30"></Label>
+                                        <Label Content="date2" MinHeight="27"></Label>
+                                        <Label Content="date3" MinHeight="27"></Label>
+                                        <Label Content="date4" MinHeight="27"></Label>
+                                        <Label Content="date5" MinHeight="27"></Label>
+                                    </StackPanel>
+                                    
+                                    
+                                </Grid>-->
+                            </StackPanel>
+                            
+                        </Grid>
+                        <Grid x:Name="gridSelectRunbook" Visibility="Hidden" Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                            
+                        </Grid>
+                    </Grid>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem x:Name="tabJob" Header="{Binding Strings[tabJob].Value, FallbackValue=[Job], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}">
+                <Grid Margin="10,10,10,10" Width="Auto" Height="Auto">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="225*"/>
+                        <ColumnDefinition Width="93*"/>
+                        <ColumnDefinition Width="212*"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="1" Grid.Row="1">
+                        <Label x:Name="labelJobID" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Content="ID:"/>
+                        <TextBox x:Name="textJobID" Height="23" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto"
+								MaxLength="256" MinHeight="24">
+                            <Binding Path="Title" Mode="TwoWay" UpdateSourceTrigger="Default"/>
+                        </TextBox>
+                    </StackPanel>
+                    <StackPanel Margin="5,5,5,5" Grid.ColumnSpan="1" Grid.Row="1" Grid.Column="2">
+                        <Label x:Name="labelJobStatus" Height="28" HorizontalAlignment="Stretch" VerticalAlignment="Top"
+								Content="Status:"/>
+                        <TextBox x:Name="textStatus" Height="23" HorizontalAlignment="Stretch" VerticalAlignment="Top" Width="Auto"
+								MaxLength="256" MinHeight="24">
+                            <Binding Path="Title" Mode="TwoWay" UpdateSourceTrigger="Default"/>
+                        </TextBox>
+                    </StackPanel>
+
+                </Grid>
+            </TabItem>
+
+            <TabItem x:Name="tabHistory"
+				Header="{Binding Strings[tabHistory].Value, FallbackValue=[History], RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type views:FormView}}}">
+                <smcontrols:HistoryTab Margin="10,10,10,10"/>
+            </TabItem>
+        </TabControl>
+        <!--<local:AzureAutomationActivityForm HorizontalAlignment="Left" VerticalAlignment="Top"/>-->
+    </Grid>
+</UserControl>

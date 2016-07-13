@@ -6,7 +6,7 @@
     <RootNamespace>SCSM.AzureAutomation</RootNamespace>
     <Name>SCSM.AzureAutomation</Name>
     <ManagementPackName>SCSM.AzureAutomation</ManagementPackName>
-    <Version>1.0.0.0</Version>
+    <Version>1.0.0.1</Version>
     <MpFrameworkVersion>v7.0.2</MpFrameworkVersion>
     <MpFrameworkProfile>SM</MpFrameworkProfile>
     <ProductVersion>1.1.0.0</ProductVersion>

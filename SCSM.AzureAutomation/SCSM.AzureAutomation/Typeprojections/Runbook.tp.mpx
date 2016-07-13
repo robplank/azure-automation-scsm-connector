@@ -5,6 +5,14 @@
         <TypeProjection ID="SCSM.AzureAutomation.RunbookViewProjection" Accessibility="Public" Type="SCSM.AzureAutomation.Runbook">
           <Component Path="$Target/Path[Relationship='System.AARunbookRelatesToAAConnector']$" Alias="Connector" />
         </TypeProjection>
+        <TypeProjection ID="SCSM.AzureAutomationRunbook.Full" Accessibility="Public" Type="SCSM.AzureAutomation.Runbook">
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemRelatesToConfigItem' SeedRole='Target']$" Alias="ImpactedWorkItem" />
+          <Component Path="$Context/Path[Relationship='WorkItem!System.WorkItemAboutConfigItem' SeedRole='Target']$" Alias="RelatedWorkItem" />
+          <Component Path="$Context/Path[Relationship='SupportingItem!System.ConfigItemHasFileAttachment']$" Alias="FileAttachment" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem']$" Alias="RelatedConfigItem" />
+          <Component Path="$Context/Path[Relationship='System!System.ConfigItemRelatesToConfigItem' SeedRole='Target']$" Alias="RelatedConfigItemSource" />
+          <Component Path="$Context/Path[Relationship='CoreKnowledge!System.EntityLinksToKnowledgeDocument']$" Alias="RelatedKnowledgeArticles" />
+        </TypeProjection>
       </TypeProjections>
     </EntityTypes>
   </TypeDefinitions>

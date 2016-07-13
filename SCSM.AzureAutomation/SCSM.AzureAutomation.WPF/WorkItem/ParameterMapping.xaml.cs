@@ -13,7 +13,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using SCSM.AzureAutomation.WPF.WPFData;
 
-namespace SCSM.AzureAutomation.WPF.ConfigItem
+namespace SCSM.AzureAutomation.WPF.WorkItem
 {
     /// <summary>
     /// Interaction logic for ParameterMapping.xaml
@@ -23,7 +23,7 @@ namespace SCSM.AzureAutomation.WPF.ConfigItem
         public ParameterMapping()
         {
             InitializeComponent();
-            ComboBoxBuild();
+      
             
         }
 

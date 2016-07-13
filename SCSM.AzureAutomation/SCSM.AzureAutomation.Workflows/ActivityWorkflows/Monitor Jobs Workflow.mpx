@@ -1,0 +1,150 @@
+﻿<ManagementPackFragment SchemaVersion="2.0" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <TypeDefinitions>
+    <ModuleTypes>
+      <WriteActionModuleType ID="Monitor_Azure_Automation_Jobs.WindowsPowerShellScript.45714dea_4fa9_4e6b_87c6_6920b4cd9e54.MT" Accessibility="Public" RunAs="Core!Microsoft.SystemCenter.ServiceManager.WorkflowAccount" Batching="false">
+        <Configuration>
+          <IncludeSchemaTypes>
+            <SchemaType>Windows!Microsoft.Windows.PowerShellSchema</SchemaType>
+          </IncludeSchemaTypes>
+        </Configuration>
+        <ModuleImplementation Isolation="Any">
+          <Composite>
+            <MemberModules>
+              <WriteAction ID="Monitor_Azure_Automation_Jobs.WindowsPowerShellScript.45714dea_4fa9_4e6b_87c6_6920b4cd9e54.PSWA" TypeID="Windows!Microsoft.Windows.PowerShellWriteAction">
+                <ScriptName>DoWork.ps1</ScriptName>
+                <ScriptBody>
+
+
+$TypePath = (Get-ItemProperty "hklm:\software\microsoft\system center\2010\service manager\setup").InstallDirectory + "scsm.azureautomation.wpf.dll"
+Add-Type -Path $TypePath
+
+$AAActivities = Get-SCSMObject -Class (Get-SCSMClass -Name SCSM.AzureAutomation.Runbook.Activity$) -Filter "Status -eq '11fc3cef-15e5-bca4-dee0-9c1155ec8d83'"
+if($AAActivities -ne $null)
+{
+$AAConnectors = Get-SCSMObject -Class (Get-SCSMClass -Name SCSM.AzureAutomation.Connector$)
+foreach($connector in $AAConnectors)
+{
+$ConnectorConfig = Get-SCSMconnector -ID ($connector.ID)
+if($connectorConfig.Enabled -eq $true)
+{
+$SubscriptionID = $connector.SubscriptionID
+$AutomationAccountName = $connector.AutomationAccount
+$username = $connector.RunAsAccountName
+$encryptedPassword = $connector.RunAsAccountPassword
+$secpassword = ConvertTo-SecureString([SCSM.AzureAutomation.WPF.Connector.StringCipher]::Decrypt($encryptedPassword,$username)) -AsPlainText -Force
+$ResourceGroup = $connector.ResourceGroup
+
+$Creds = New-Object System.Management.Automation.PSCredential ($username, $secpassword)
+Login-AzureRmAccount -Credential $Creds -SubscriptionId $SubscriptionID
+$Activities = $AAActivities | ? {$_.ConnectorID -eq $connector.ID}
+foreach($Activity in $Activities)
+{
+$job = Get-AzureRmAutomationJob -ResourceGroupName $ResourceGroup -AutomationAccountName $AutomationAccountName -Id $Activity.JobID
+if($job -eq $null)
+{
+#Add Code here to either change the status of the activity or retry (questions: how many retires, what if internet goes down)
+}
+else
+{
+if ($job.Status -match "Completed")
+{
+if ($ReturnJobOutput)
+{
+# Output
+$jobout = Get-AzureRmAutomationJobOutput `
+-Id $job.Id `
+-AutomationAccountName $AutomationAccountName `
+-ResourceGroupName $ResourceGroup `
+-Stream Output
+if ($jobout)
+{
+$HT = @{
+Output = $jobout.Text
+Status = "Completed"
+}
+Set-SCSMObject -SMObject $Activity -PropertyHashtable $HT
+}
+else
+{
+Set-SCSMObject -SMObject $Activity -Property Status -Value "Completed"
+}
+
+}
+}
+}
+
+}
+}
+}
+}
+                </ScriptBody>
+                <SnapIns></SnapIns>
+                <Parameters></Parameters>
+                <TimeoutSeconds>300</TimeoutSeconds>
+                <StrictErrorHandling>true</StrictErrorHandling>
+                <SerializationDepth>3</SerializationDepth>
+              </WriteAction>
+            </MemberModules>
+            <Composition>
+              <Node ID="Monitor_Azure_Automation_Jobs.WindowsPowerShellScript.45714dea_4fa9_4e6b_87c6_6920b4cd9e54.PSWA" />
+            </Composition>
+          </Composite>
+        </ModuleImplementation>
+        <InputType>System!System.BaseData</InputType>
+      </WriteActionModuleType>
+    </ModuleTypes>
+  </TypeDefinitions>
+  <Categories>
+    <Category ID="Monitor_Azure_Automation_JobsCategory" Target="Monitor_Azure_Automation_Jobs" Value="EnterpriseManagement!Microsoft.EnterpriseManagement.ServiceManager.Rules.WorkflowSubscriptions" />  
+  </Categories>
+  <Monitoring>
+    <Rules>
+      <Rule ID="Monitor_Azure_Automation_Jobs" Enabled="true" Target="SC!Microsoft.SystemCenter.SubscriptionWorkflowTarget" ConfirmDelivery="false" Remotable="true" Priority="Normal" DiscardLevel="100">
+        <Category>Notification</Category>
+        <DataSources>
+          <DataSource ID="SchedulerDS" RunAs="SC!Microsoft.SystemCenter.DatabaseWriteActionAccount" TypeID="System!System.Scheduler">
+            <Scheduler>
+              <SimpleReccuringSchedule>
+                <Interval Unit="Minutes">5</Interval>
+              </SimpleReccuringSchedule>
+              <ExcludeDates />
+            </Scheduler>
+          </DataSource>
+        </DataSources>
+        <WriteActions>
+          <WriteAction ID="WA" TypeID="MSS!Microsoft.EnterpriseManagement.SystemCenter.Subscription.WindowsWorkflowTaskWriteAction">
+            <Subscription>
+              <WindowsWorkflowConfiguration>
+                <AssemblyName>SCSM.AzureAutomation.Workflows.AT</AssemblyName>
+                <WorkflowTypeName>WorkflowAuthoring.MonitorJobs</WorkflowTypeName>
+                <WorkflowParameters></WorkflowParameters>
+                <RetryExceptions></RetryExceptions>
+                <RetryDelaySeconds>60</RetryDelaySeconds>
+                <MaximumRunningTimeSeconds>300</MaximumRunningTimeSeconds>
+              </WindowsWorkflowConfiguration>
+            </Subscription>
+          </WriteAction>
+        </WriteActions>
+      </Rule>
+    </Rules>
+    <Tasks>
+      <Task ID="Monitor_Azure_Automation_Jobs.WindowsPowerShellScript.45714dea_4fa9_4e6b_87c6_6920b4cd9e54" Accessibility="Public" Enabled="true" Target="Windows!Microsoft.Windows.Computer" Timeout="300" Remotable="true">
+        <Category>Notification</Category>
+        <WriteAction ID="Monitor_Azure_Automation_Jobs.WindowsPowerShellScript.45714dea_4fa9_4e6b_87c6_6920b4cd9e54.WA" TypeID="Monitor_Azure_Automation_Jobs.WindowsPowerShellScript.45714dea_4fa9_4e6b_87c6_6920b4cd9e54.MT" />
+      </Task>
+    </Tasks>
+  </Monitoring>
+  <LanguagePacks>
+    <LanguagePack ID="ENU" IsDefault="true">
+      <DisplayStrings>
+        <DisplayString ElementID="Monitor_Azure_Automation_Jobs">
+          <Name>Monitor Azure Automation Jobs</Name>
+          <Description></Description>
+        </DisplayString>
+        <DisplayString ElementID="Monitor_Azure_Automation_Jobs.WindowsPowerShellScript.45714dea_4fa9_4e6b_87c6_6920b4cd9e54">
+          <Name>Monitor_Azure_Automation_Jobs.WindowsPowerShellScript.45714dea_4fa9_4e6b_87c6_6920b4cd9e54</Name>
+        </DisplayString>
+      </DisplayStrings>
+    </LanguagePack>
+  </LanguagePacks>
+</ManagementPackFragment>
